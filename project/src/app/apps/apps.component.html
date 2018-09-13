@@ -1,0 +1,18 @@
+<mat-toolbar class="mat-elevation-z6" color="basic">
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-around center">
+    <div fxLayoutAlign="start center">
+      <a routerLink="/user?id/home"><img id="logo" src="../assets//Logo/OrganizYou_icon.png" alt="OrganizeYou" title="Fique Organizado!"
+          width="50px" height="50px" class="menu-item" />
+      </a>
+      <span class="menu-item">OrganizeYou</span>
+    </div>
+    <div fxLayoutAlign="space-around center">
+      <nav mat-tab-nav-bar>
+        <a mat-tab-link routerLink="/apps/home">Home</a>
+        <a mat-tab-link routerLink="/apps/fast-notes">Notas Rápidas</a>
+        <a mat-tab-link routerLink="/apps/calendar">Calendário</a>
+      </nav>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>
