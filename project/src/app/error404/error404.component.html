@@ -1,3 +1,18 @@
-<p>
-  error404 works!
-</p>
+<div fxLayoutAlign="center center" fxFill class="fillBackground">
+  <mat-card color="primary">
+    <mat-card-header>
+      <mat-card-title fxLayoutAlign="center">
+        <h1>Ooooops!</h1>
+      </mat-card-title>
+      <mat-card-subtitle fxLayoutAlign="center">
+        <h2>Não conseguimos encontrar a página {{ currentUrl }}. Tente novamente.</h2>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content fxLayoutAlign="center">
+      <h3>Status do erro: 404</h3>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="center">
+      <button mat-raised-button color="primary" routerLink="/login">Voltar ao Login</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
