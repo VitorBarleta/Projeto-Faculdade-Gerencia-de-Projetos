@@ -1,9 +1,13 @@
 <div fxLayoutAlign="space-around center">
-  <button mat-button><mat-icon>navigate_before</mat-icon></button>
+  <button mat-button (click)="beforeMonth()">
+    <mat-icon>navigate_before</mat-icon>
+  </button>
   <h2>{{currentMonthFull}}</h2>
-  <button mat-button><mat-icon>navigate_next</mat-icon></button>
+  <button mat-button (click)="nextMonth()">
+    <mat-icon>navigate_next</mat-icon>
+  </button>
 </div>
-<mat-grid-list cols="7" rowHeight="2.6:1">
+<mat-grid-list cols="7" rowHeight="12%">
   <mat-grid-tile-header>
     <mat-grid-tile>Domingo</mat-grid-tile>
     <mat-grid-tile>Segunda-Feira</mat-grid-tile>
@@ -14,6 +18,6 @@
     <mat-grid-tile>Sábado</mat-grid-tile>
   </mat-grid-tile-header>
   <mat-grid-tile *ngFor="let days of calendar" class="mat-elevation-z6" color="basic">
-      <button mat-button [disabled]="days < 31" fxFill>{{days}}</button>
+      <button mat-button fxFill><strong>{{days}}</strong></button>
   </mat-grid-tile>
 </mat-grid-list>
