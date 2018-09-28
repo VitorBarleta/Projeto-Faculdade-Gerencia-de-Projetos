@@ -1,3 +1,19 @@
-<p>
-  calendar works!
-</p>
+<div fxLayoutAlign="space-around center">
+  <button mat-button><mat-icon>navigate_before</mat-icon></button>
+  <h2>{{currentMonthFull}}</h2>
+  <button mat-button><mat-icon>navigate_next</mat-icon></button>
+</div>
+<mat-grid-list cols="7" rowHeight="2.6:1">
+  <mat-grid-tile-header>
+    <mat-grid-tile>Domingo</mat-grid-tile>
+    <mat-grid-tile>Segunda-Feira</mat-grid-tile>
+    <mat-grid-tile>Terça-Feira</mat-grid-tile>
+    <mat-grid-tile>Quarta-Feira</mat-grid-tile>
+    <mat-grid-tile>Quinta-Feira</mat-grid-tile>
+    <mat-grid-tile>Sexta-Feira</mat-grid-tile>
+    <mat-grid-tile>Sábado</mat-grid-tile>
+  </mat-grid-tile-header>
+  <mat-grid-tile *ngFor="let days of calendar" class="mat-elevation-z6" color="basic">
+      <button mat-button [disabled]="days < 31" fxFill>{{days}}</button>
+  </mat-grid-tile>
+</mat-grid-list>

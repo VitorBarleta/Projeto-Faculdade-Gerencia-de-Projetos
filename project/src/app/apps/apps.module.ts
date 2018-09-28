@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatButtonModule, MatInputModule, MatToolbarModule, MatIconModule,
-   MatCardModule, MatTabsModule } from '@angular/material';
+   MatCardModule, MatTabsModule, MatGridListModule } from '@angular/material';
 
 import 'hammerjs';
 import { Routes, RouterModule } from '@angular/router';
@@ -41,16 +41,10 @@ const route: Routes = [
     MatCardModule,
     CommonModule,
     MatTabsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatGridListModule
   ],
-  exports: [
-    MatButtonModule,
-    MatInputModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatCardModule,
-    FlexLayoutModule
-    
+  exports: [    
   ],
   providers: [],
   bootstrap: []
