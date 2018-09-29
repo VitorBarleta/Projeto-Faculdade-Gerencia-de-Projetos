@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ObjectUnsubscribedError } from 'rxjs';
 
 @Component({
     selector: 'app-calendar',
@@ -21,7 +22,7 @@ export class CalendarComponent implements OnInit {
     public currentYear: number;
     public currentMonthFull: string;
 
-    public calendar: number[] = [];
+    public calendar = [];
 
     constructor() { }
 
@@ -41,6 +42,7 @@ export class CalendarComponent implements OnInit {
         this.currentMonth = 11;
         this.currentYear--;
       }
+      this.indexDay = 0;
       this.getDate();
     }
 
@@ -50,6 +52,8 @@ export class CalendarComponent implements OnInit {
             this.currentMonth = 0;
             this.currentYear++;
         }
+        
+        this.indexDay = 0;
         this.getDate();
     }
 
@@ -74,7 +78,7 @@ export class CalendarComponent implements OnInit {
                 day = 1;
                 monthBefore = month;
             }
-            this.calendar[i] = day;
+            this.calendar[i] = Object.assign({day: day, isEnabled: this.isDisabled(day)});
             day++;
         }
         this.currentMonthFull = this.daysOfMonth[this.currentMonth];
@@ -86,7 +90,7 @@ export class CalendarComponent implements OnInit {
 
     private indexDay: number = 0;
 
-    /*public isDisabled(day: number): boolean {
+    public isDisabled(day: number): boolean {
         if (day == 1 && this.indexDay < 1) {
             this.indexDay++;
             return false;
@@ -98,5 +102,5 @@ export class CalendarComponent implements OnInit {
             return false;
         }
         else return true;
-    }*/
+    }
 }
