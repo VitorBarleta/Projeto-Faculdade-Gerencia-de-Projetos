@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ObjectUnsubscribedError } from 'rxjs';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { NewEventComponent } from './new-event/new-event.component';
 
 @Component({
     selector: 'app-calendar',
@@ -10,9 +12,19 @@ import { ObjectUnsubscribedError } from 'rxjs';
 export class CalendarComponent implements OnInit {
 
     public daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    public daysOfMonth = [
-        'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-        'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+    public monthOfYear = [
+        {month: 'Janeiro', color: '255, 255, 255'},
+        {month: 'Fevereiro', color: '255, 165, 0'},
+        {month: 'Março', color: '0, 0, 255'},
+        {month: 'Abril', color: '0, 128, 0'},
+        {month: 'Maio', color: '255, 255, 0'},
+        {month: 'Junho', color: '255, 0, 0'},
+        {month: 'Julho', color: '255, 255, 0'},
+        {month: 'Agosto', color: '218, 165, 32'},
+        {month: 'Setembro', color: '0, 128, 0'},
+        {month: 'Outubro', color: '238, 130, 238'},
+        {month: 'Novembro', color: '0, 0, 255'},
+        {month: 'Dezembro', color: '255, 0, 0'}
     ]
 
     public dayInitCalendar: number;
@@ -24,12 +36,27 @@ export class CalendarComponent implements OnInit {
 
     public calendar = [];
 
-    constructor() { }
+    constructor(private dialog: MatDialog) { }
+
+    openDialog(day): void {
+        const dialogRef = this.dialog.open(NewEventComponent, {
+          width: '450px',
+          data: {
+            year: this.currentYear, 
+            month: this.currentMonth, 
+            monthFull: this.currentMonthFull, 
+            day: day
+          }
+        });
+    
+        dialogRef.afterClosed().subscribe(result => {
+        });
+      }
 
     ngOnInit() {
         this.currentMonth = new Date().getMonth();
         this.currentYear = new Date().getFullYear();
-        this.getDate();
+        this.getMonthDays();
     }
 
     public calculateLeapYear(year: number) {
@@ -43,7 +70,7 @@ export class CalendarComponent implements OnInit {
         this.currentYear--;
       }
       this.indexDay = 0;
-      this.getDate();
+      this.getMonthDays();
     }
 
     public nextMonth(): void{
@@ -54,10 +81,10 @@ export class CalendarComponent implements OnInit {
         }
         
         this.indexDay = 0;
-        this.getDate();
+        this.getMonthDays();
     }
 
-    public getDate(): void {
+    public getMonthDays(): void {
         let day: number, month: number, year: number, monthBefore: number;
         day = 1;
         month = this.currentMonth;
@@ -81,7 +108,12 @@ export class CalendarComponent implements OnInit {
             this.calendar[i] = Object.assign({day: day, isEnabled: this.isDisabled(day)});
             day++;
         }
-        this.currentMonthFull = this.daysOfMonth[this.currentMonth];
+        this.chooseMonthColor(this.monthOfYear[this.currentMonth].color);
+        this.currentMonthFull = this.monthOfYear[this.currentMonth].month;
+    }
+
+    private chooseMonthColor(month: string): void{
+        document.getElementById('month-color').style.backgroundColor = `rgba(${month}, 0.4)`;
     }
 
     public calculateWeekDay(year: number, month: number, day: number): number {

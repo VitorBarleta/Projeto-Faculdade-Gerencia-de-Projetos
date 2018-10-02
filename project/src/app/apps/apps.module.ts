@@ -3,8 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatButtonModule, MatInputModule, MatToolbarModule, MatIconModule,
-   MatCardModule, MatTabsModule, MatGridListModule } from '@angular/material';
+import {
+  MatButtonModule, MatInputModule, MatToolbarModule, MatIconModule,
+  MatCardModule, MatTabsModule, MatGridListModule, MatDialogContent, MatDialogModule, MatDialogClose, MatDialogActions, MatDialogTitle, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE
+} from '@angular/material';
 
 import 'hammerjs';
 import { Routes, RouterModule } from '@angular/router';
@@ -14,21 +16,26 @@ import { HomeComponent } from './home/home.component';
 import { FastNotesComponent } from './fast-notes/fast-notes.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NewEventComponent } from './calendar/new-event/new-event.component';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const route: Routes = [
-  {path: 'apps', component: AppsComponent, children: [
-    {path: 'home', component: HomeComponent},
-    {path: 'fast-notes', component: FastNotesComponent},
-    {path: 'calendar', component: CalendarComponent}
-  ]}
+  {
+    path: 'apps', component: AppsComponent, children: [
+      { path: 'home', component: HomeComponent },
+      { path: 'fast-notes', component: FastNotesComponent },
+      { path: 'calendar', component: CalendarComponent }
+    ]
+  }
 ]
 
 @NgModule({
   declarations: [
-      AppsComponent,
-      HomeComponent,
-      FastNotesComponent,
-      CalendarComponent
+    AppsComponent,
+    HomeComponent,
+    FastNotesComponent,
+    CalendarComponent,
+    NewEventComponent
   ],
   imports: [
     BrowserModule,
@@ -42,11 +49,19 @@ const route: Routes = [
     CommonModule,
     MatTabsModule,
     FlexLayoutModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  exports: [    
+  exports: [
   ],
-  providers: [],
-  bootstrap: []
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}
+  ],
+  bootstrap: [],
+  entryComponents: [NewEventComponent]
 })
 export class AppsModule { }

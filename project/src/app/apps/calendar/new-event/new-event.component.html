@@ -1,0 +1,46 @@
+<div class="mat-dialog-title">
+  <label mat-label>Adicionar Evento</label>
+</div>
+<form [formGroup]="form" fxFill>
+  <div fxLayout="row" fxFill fxLayoutAlign="center center">
+    <h3>{{form.value.date}}</h3>
+  </div>
+  <div>
+    <mat-form-field fxFill>
+      <input matInput formControlName="title" placeholder="Título" required>
+      <mat-error *ngIf="form.get('title').touched && form.get('title').hasError('required')">Obrigatório!</mat-error>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-form-field fxFlex="48">
+      <input matInput formControlName="startDay" [value]="form.value.startDay" placeholder="Dia de Início" readonly>
+    </mat-form-field>
+    <mat-form-field fxFlex="48">
+      <input matInput type="time" formControlName="startHour" placeholder="Hora de Início">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-form-field fxFlex="48">
+      <input matInput formControlName="endDay" [matDatepicker]="endDay" placeholder="Dia de Término" readonly>
+      <mat-datepicker-toggle matSuffix [for]="endDay"></mat-datepicker-toggle>
+      <mat-datepicker #endDay color="primary" disabled="false"></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field fxFlex="48">
+      <input matInput type="time" formControlName="endHour" placeholder="Hora de Término">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxFill>
+    <mat-form-field fxFill>
+      <input matInput formControlName="local" placeholder="Localização">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row">
+    <mat-form-field fxFill>
+      <textarea matInput matTextareaAutosize placeholder="Descrição" formControlName="description"></textarea>
+    </mat-form-field>
+  </div>
+</form>
+<div mat-dialog-actions fxLayoutAlign="end center">
+  <button mat-raised-button mat-dialog-close color="basic">Cancelar</button>
+  <button mat-raised-button color="primary" [disabled]="!form.valid">Salvar</button>
+</div>
