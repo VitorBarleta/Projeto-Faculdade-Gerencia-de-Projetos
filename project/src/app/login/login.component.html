@@ -13,11 +13,11 @@
           <div fxLayout="row">
             <mat-form-field fxFill>
               <input matInput type="email" formControlName="login" placeholder="Login" required>
-              <mat-error *ngIf="loginForm.get('login').touched && loginForm.get('login').hasError('minlength')">E-mail
-                muito curto.</mat-error>
-              <mat-error *ngIf="loginForm.get('login').touched && loginForm.get('login').hasError('email') || loginForm.get('login').hasError('required')">Informe
-                um
-                Login válido.</mat-error>
+              <mat-error *ngIf="loginForm.get('login').touched && loginForm.get('login').hasError('minlength')">
+                E-mail muito curto.</mat-error>
+              <mat-error *ngIf="loginForm.get('login').touched && loginForm.get('login').hasError('email') || loginForm.get('login').hasError('required')">
+                Informe um E-mail válido.
+              </mat-error>
             </mat-form-field>
           </div>
           <div fxLayout="row">
@@ -39,7 +39,7 @@
             <p mat-label>Não tem uma conta? <a mat-label href="#">Crie uma.</a></p>
           </div>
           <div mat-card-actions fxLayoutAlign="end center">
-            <button mat-raised-button color="primary" [disabled]="!loginForm.valid" (click)="LogOn()">Entrar</button>
+            <button mat-raised-button color="primary" [disabled]="loginForm.invalid  && (loginForm.dirty || loginForm.touched)" (click)="LogOn()">Entrar</button>
           </div>
         </form>
       </mat-card>

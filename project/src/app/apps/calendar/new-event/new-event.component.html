@@ -1,3 +1,6 @@
+<div *ngIf="isLoading" class="spinner-content" fxLayout="row">
+  <mat-spinner [diameter]="50" class="spinner"></mat-spinner>
+</div>
 <div class="mat-dialog-title" fxLayout="row" fxLayoutAlign="space-between center">
   <label mat-label>{{fullDate}}</label>
   <button mat-dialog-close mat-fab color="basic">
@@ -108,7 +111,7 @@
       </form>
         <div fxLayout="row" fxLayoutAlign="end center">
           <button mat-raised-button color="warn" (click)="deleteEvent(formEdit.value)">Excluir</button>
-          <button mat-raised-button color="primary" [disabled]="!formEdit.valid" (click)="updateEvent(formEdit.value)">Salvar</button>
+          <button mat-raised-button color="primary" [disabled]="!formEdit.valid | async" (click)="updateEvent(formEdit.value)">Salvar</button>
         </div>
     </mat-expansion-panel>
   </mat-accordion>

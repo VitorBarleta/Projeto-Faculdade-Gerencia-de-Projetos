@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatInputModule, MatToolbarModule, MatIconModule, MatProgressSpinnerModule,
   MatCardModule, MatTabsModule, MatGridListModule, MatDialogModule, MatSelectModule, MatDatepickerModule,
-  MatNativeDateModule, MAT_DATE_LOCALE, MatExpansionModule, MatSlideToggleModule, MatTooltipModule
+  MatNativeDateModule, MAT_DATE_LOCALE, MatExpansionModule, MatSlideToggleModule, MatTooltipModule, MatTableModule, MatSortModule
 } from '@angular/material';
 
 import 'hammerjs';
@@ -61,6 +61,7 @@ const route: Routes = [
     MatGridListModule,
     MatDialogModule,
     ReactiveFormsModule,
+    MatSortModule,
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -69,6 +70,7 @@ const route: Routes = [
     MatProgressSpinnerModule,
     MatSlideToggleModule,
     HttpClientModule,
+    MatTableModule,
     ToastrModule.forRoot()
   ],
   exports: [

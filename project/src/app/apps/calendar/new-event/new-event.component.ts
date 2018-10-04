@@ -12,18 +12,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NewEventComponent implements OnInit {
 
-  public isLoading = true;
-
+  public isLoading = false;
   public formNewEvent: FormGroup;
-
   public formEditEvent: Array<any> = [];
-
   public panelOpenState = false;
-
   public savedEvents: Array<any> = [];
-  
   public smallScreen: boolean = window.innerWidth < 600 ? true : false;
-
   public fullDate = `${this.data.day} de ${this.data.monthFull} de ${this.data.year}`;
 
   constructor(private dialog: MatDialog,
@@ -81,11 +75,15 @@ export class NewEventComponent implements OnInit {
   }
 
   public saveEvent(event): void {
+    this.isLoading = true;
     this.calendarService.post(event);
+    this.isLoading = false;
   }
 
   public updateEvent(event): void {
+    this.isLoading = true;
     this.calendarService.update(event);
+    this.isLoading = false;
   }
 
   public deleteEvent(event): void {

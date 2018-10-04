@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { User } from './user';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -39,7 +40,7 @@ export class LoginComponent implements OnInit {
     this.loginForm.valueChanges.subscribe(value => {
       this.user.user = value.login;
       this.user.password = value.password;
-    }); 
+    });
   }
 
   public visibilityPassword(): void {
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
     else
       this.isHide = false;
 
-    if (this.isHide){
+    if (this.isHide) {
       this.passwordIcon = 'visibility';
       this.passwordOption = 'text';
     }
@@ -60,7 +61,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-    public LogOn(): void {
-      this.auth.doLogin(this.user);
-    }
+  public LogOn(): void {
+    this.auth.doLogin(this.user);
+  }
 }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FastNotesDialogComponent } from './fast-notes-dialog.component';
+import { CalendarComponent } from '../calendar.component';
 
-describe('FastNotesDialogComponent', () => {
-  let component: FastNotesDialogComponent;
-  let fixture: ComponentFixture<FastNotesDialogComponent>;
+describe('CalendarComponent', () => {
+  let component: CalendarComponent;
+  let fixture: ComponentFixture<CalendarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FastNotesDialogComponent ]
+      declarations: [ CalendarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FastNotesDialogComponent);
+    fixture = TestBed.createComponent(CalendarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

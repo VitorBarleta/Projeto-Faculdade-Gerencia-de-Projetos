@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialogConfirmComponent } from './dialog.component';
+import { FastNotesDialogComponent } from '../fast-notes-dialog/fast-notes-dialog.component';
 
-describe('DialogComponent', () => {
-  let component: DialogConfirmComponent;
-  let fixture: ComponentFixture<DialogConfirmComponent>;
+describe('FastNotesDialogComponent', () => {
+  let component: FastNotesDialogComponent;
+  let fixture: ComponentFixture<FastNotesDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogConfirmComponent ]
+      declarations: [ FastNotesDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DialogConfirmComponent);
+    fixture = TestBed.createComponent(FastNotesDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

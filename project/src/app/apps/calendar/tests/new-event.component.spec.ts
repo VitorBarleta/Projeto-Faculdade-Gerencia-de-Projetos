@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewEventComponent } from './new-event.component';
+import { NewEventComponent } from '../new-event/new-event.component';
 
 describe('NewEventComponent', () => {
   let component: NewEventComponent;
