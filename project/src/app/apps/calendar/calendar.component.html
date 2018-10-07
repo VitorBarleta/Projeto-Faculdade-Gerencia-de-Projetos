@@ -18,6 +18,12 @@
     <mat-grid-tile>Sábado</mat-grid-tile>
   </mat-grid-tile-header>
   <mat-grid-tile *ngFor="let days of calendar" class="mat-elevation-z6" color="basic">
-      <button mat-button fxFill (click)="openDialog(days.day)" [disabled]="days.isEnabled"><strong>{{days.day}}</strong></button>
+      <button mat-button fxFill 
+      [ngStyle]="{'background-color': days.day == currentDay ? 'rgba(0, 0, 255, 0.3)' : 'none' }" 
+      (click)="openDialog(days.day, days.events)" [disabled]="days.isEnabled">
+      <strong>
+        {{days.day}}
+      </strong>
+    </button>
   </mat-grid-tile>
 </mat-grid-list>

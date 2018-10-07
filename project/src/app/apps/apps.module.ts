@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   MatButtonModule, MatInputModule, MatToolbarModule, MatIconModule,
-  MatCardModule, MatTabsModule, MatGridListModule, MatDialogContent, MatDialogModule, MatDialogClose, MatDialogActions, MatDialogTitle, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE
+  MatCardModule, MatTabsModule, MatGridListModule, MatDialogContent, MatDialogModule, MatDialogClose, MatDialogActions, MatDialogTitle, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatExpansionModule
 } from '@angular/material';
 
 import 'hammerjs';
@@ -18,6 +18,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NewEventComponent } from './calendar/new-event/new-event.component';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 const route: Routes = [
   {
@@ -54,7 +55,9 @@ const route: Routes = [
     ReactiveFormsModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatExpansionModule,
+    HttpClientModule
   ],
   exports: [
   ],

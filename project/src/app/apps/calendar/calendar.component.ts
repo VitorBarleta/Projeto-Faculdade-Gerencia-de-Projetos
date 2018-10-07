@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ObjectUnsubscribedError } from 'rxjs';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NewEventComponent } from './new-event/new-event.component';
+import { CalendarService } from './calendar.service';
 
 @Component({
     selector: 'app-calendar',
@@ -13,47 +14,50 @@ export class CalendarComponent implements OnInit {
 
     public daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     public monthOfYear = [
-        {month: 'Janeiro', color: '255, 255, 255'},
-        {month: 'Fevereiro', color: '255, 165, 0'},
-        {month: 'Março', color: '0, 0, 255'},
-        {month: 'Abril', color: '0, 128, 0'},
-        {month: 'Maio', color: '255, 255, 0'},
-        {month: 'Junho', color: '255, 0, 0'},
-        {month: 'Julho', color: '255, 255, 0'},
-        {month: 'Agosto', color: '218, 165, 32'},
-        {month: 'Setembro', color: '0, 128, 0'},
-        {month: 'Outubro', color: '238, 130, 238'},
-        {month: 'Novembro', color: '0, 0, 255'},
-        {month: 'Dezembro', color: '255, 0, 0'}
+        { month: 'Janeiro', color: '255, 255, 255' },
+        { month: 'Fevereiro', color: '255, 165, 0' },
+        { month: 'Março', color: '0, 0, 255' },
+        { month: 'Abril', color: '0, 128, 0' },
+        { month: 'Maio', color: '255, 255, 0' },
+        { month: 'Junho', color: '255, 0, 0' },
+        { month: 'Julho', color: '255, 255, 0' },
+        { month: 'Agosto', color: '218, 165, 32' },
+        { month: 'Setembro', color: '0, 128, 0' },
+        { month: 'Outubro', color: '238, 130, 238' },
+        { month: 'Novembro', color: '0, 0, 255' },
+        { month: 'Dezembro', color: '255, 0, 0' }
     ]
 
     public dayInitCalendar: number;
     public dayEndCalendar: number;
-    public currentDay: number;
+    public currentDay: number = new Date().getDate();
     public currentMonth: number;
     public currentYear: number;
     public currentMonthFull: string;
 
     public calendar = [];
 
-    constructor(private dialog: MatDialog) { }
+    constructor(private dialog: MatDialog, private calendarService: CalendarService) { }
 
-    openDialog(day): void {
+    openDialog(day: string, event: Array<any>): void {
+        console.log(event);
         const dialogRef = this.dialog.open(NewEventComponent, {
-          width: '450px',
-          data: {
-            year: this.currentYear, 
-            month: this.currentMonth, 
-            monthFull: this.currentMonthFull, 
-            day: day
-          }
+            maxHeight: '610px',
+            width: '900px',
+            data: {
+                event: event,
+                year: this.currentYear,
+                month: this.currentMonth,
+                monthFull: this.currentMonthFull,
+                day: day
+            }
         });
-    
         dialogRef.afterClosed().subscribe(result => {
         });
-      }
+    }
 
     ngOnInit() {
+        this.getAllEvents();
         this.currentMonth = new Date().getMonth();
         this.currentYear = new Date().getFullYear();
         this.getMonthDays();
@@ -63,23 +67,23 @@ export class CalendarComponent implements OnInit {
         this.daysInMonth[1] = year % 4 == 0 ? 29 : 28;
     }
 
-    public beforeMonth(): void{
-      this.currentMonth--;
-      if(this.currentMonth < 0){
-        this.currentMonth = 11;
-        this.currentYear--;
-      }
-      this.indexDay = 0;
-      this.getMonthDays();
+    public beforeMonth(): void {
+        this.currentMonth--;
+        if (this.currentMonth < 0) {
+            this.currentMonth = 11;
+            this.currentYear--;
+        }
+        this.indexDay = 0;
+        this.getMonthDays();
     }
 
-    public nextMonth(): void{
+    public nextMonth(): void {
         this.currentMonth++;
-        if(this.currentMonth > 11){
+        if (this.currentMonth > 11) {
             this.currentMonth = 0;
             this.currentYear++;
         }
-        
+
         this.indexDay = 0;
         this.getMonthDays();
     }
@@ -105,14 +109,14 @@ export class CalendarComponent implements OnInit {
                 day = 1;
                 monthBefore = month;
             }
-            this.calendar[i] = Object.assign({day: day, isEnabled: this.isDisabled(day)});
+            this.calendar[i] = Object.assign({ day: day, isEnabled: this.isDisabled(day), events: [] });
             day++;
         }
         this.chooseMonthColor(this.monthOfYear[this.currentMonth].color);
         this.currentMonthFull = this.monthOfYear[this.currentMonth].month;
     }
 
-    private chooseMonthColor(month: string): void{
+    private chooseMonthColor(month: string): void {
         document.getElementById('month-color').style.backgroundColor = `rgba(${month}, 0.4)`;
     }
 
@@ -134,5 +138,26 @@ export class CalendarComponent implements OnInit {
             return false;
         }
         else return true;
+    }
+
+    //métodos da service
+    //
+    //
+
+    public getAllEvents(): void {
+        this.calendarService.getAll().subscribe(res => {
+            res.forEach(value => {
+                value.event.forEach(day => {
+                    for (let i = 0; i < 42; i++) {
+                        if ((this.calendar[i].day < 10 ? '0' : '') +
+                            `${this.calendar[i].day}/${this.currentMonth + 1}/${this.currentYear}` == day.startDay
+                            && !this.calendar[i].isDisabled) {
+                            this.calendar[i].events = value.event;
+                            console.log(this.calendar[i].events);
+                        }
+                    }
+                })
+            })
+        })
     }
 }
