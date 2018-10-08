@@ -15,7 +15,7 @@ export class NewEventComponent implements OnInit {
 
   public panelOpenState = false;
 
-  public savedEvents: any = [];
+  public savedEvents: Array<any> = [];
 
   public fullDate: string = `${this.data.day} de ${this.data.monthFull} de ${this.data.year}`
 
@@ -23,7 +23,7 @@ export class NewEventComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private data,
     private formBuilder: FormBuilder
   ) {
-    console.log(this.data[0].event[0].startDay);
+    this.filterEvents(this.data.events);
   }
 
   ngOnInit() {
@@ -37,6 +37,12 @@ export class NewEventComponent implements OnInit {
       local: [''],
       description: ['']
     });
+  }
+
+  private filterEvents(event: Array<any>){
+    event.forEach(e => {
+      this.savedEvents.push(e);
+    })
   }
 
   public toDate(day: string): Date{

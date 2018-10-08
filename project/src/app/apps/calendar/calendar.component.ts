@@ -40,16 +40,15 @@ export class CalendarComponent implements OnInit {
     constructor(private dialog: MatDialog, private calendarService: CalendarService) { }
 
     openDialog(day: string, event: Array<any>): void {
-        console.log(event);
         const dialogRef = this.dialog.open(NewEventComponent, {
             maxHeight: '610px',
             width: '900px',
             data: {
-                event: event,
                 year: this.currentYear,
                 month: this.currentMonth,
                 monthFull: this.currentMonthFull,
-                day: day
+                day: day,
+                events: event
             }
         });
         dialogRef.afterClosed().subscribe(result => {
@@ -109,7 +108,8 @@ export class CalendarComponent implements OnInit {
                 day = 1;
                 monthBefore = month;
             }
-            this.calendar[i] = Object.assign({ day: day, isEnabled: this.isDisabled(day), events: [] });
+            this.calendar[i] = Object.assign({ day: day, isEnabled: this.isDisabled(day), events: []});
+            this.calendar[i].events.splice([]);
             day++;
         }
         this.chooseMonthColor(this.monthOfYear[this.currentMonth].color);
@@ -152,8 +152,7 @@ export class CalendarComponent implements OnInit {
                         if ((this.calendar[i].day < 10 ? '0' : '') +
                             `${this.calendar[i].day}/${this.currentMonth + 1}/${this.currentYear}` == day.startDay
                             && !this.calendar[i].isDisabled) {
-                            this.calendar[i].events = value.event;
-                            console.log(this.calendar[i].events);
+                            this.calendar[i].events.push(day);
                         }
                     }
                 })
