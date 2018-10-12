@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
-  MatButtonModule, MatInputModule, MatToolbarModule, MatIconModule,
-  MatCardModule, MatTabsModule, MatGridListModule, MatDialogContent, MatDialogModule, MatDialogClose, MatDialogActions, MatDialogTitle, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatExpansionModule
+  MatButtonModule, MatInputModule, MatToolbarModule, MatIconModule, MatProgressSpinnerModule,
+  MatCardModule, MatTabsModule, MatGridListModule, MatDialogContent, MatDialogModule, MatDialogClose, MatDialogActions, MatDialogTitle, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatExpansionModule, MatSlideToggleModule
 } from '@angular/material';
 
 import 'hammerjs';
@@ -57,6 +57,8 @@ const route: Routes = [
     MatDatepickerModule,
     MatNativeDateModule,
     MatExpansionModule,
+    MatProgressSpinnerModule,
+    MatSlideToggleModule,
     HttpClientModule
   ],
   exports: [

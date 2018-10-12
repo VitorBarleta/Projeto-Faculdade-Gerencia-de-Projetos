@@ -1,10 +1,12 @@
 <div class="mat-dialog-title" fxLayout="row" fxLayoutAlign="space-between center">
   <label mat-label>{{fullDate}}</label>
-  <button mat-fab color="warn" mat-dialog-close><mat-icon>close</mat-icon></button>
+  <button mat-fab color="warn" mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
 </div>
 <form [formGroup]="formNewEvent" fxFill>
   <div>
-    <p mat-label>Adicionar evento</p>
+    <p mat-label><strong>Adicionar evento</strong></p>
   </div>
   <mat-card>
     <div>
@@ -35,18 +37,21 @@
         <input matInput formControlName="local" placeholder="Localização">
       </mat-form-field>
     </div>
-    <div fxLayout="row">
+    <div fxLayout="row" fxFill>
       <mat-form-field fxFill>
         <textarea matInput #message maxlength="128" matTextareaAutosize placeholder="Descrição" formControlName="description"></textarea>
         <mat-hint align="end">{{message.value.length}} / 128</mat-hint>
       </mat-form-field>
+    </div>
+    <div fxLayout="row" fxFill>
+      <mat-slide-toggle formControlName="canceled" color="warn">Cancelar evento.</mat-slide-toggle>
     </div>
     <div mat-dialog-actions fxLayoutAlign="end center">
       <button mat-raised-button color="primary" [disabled]="!formNewEvent.valid">Salvar</button>
     </div>
   </mat-card>
 </form>
-<div >
+<div>
   <div *ngIf="savedEvents.length != 0" class="mat-card-event">
     <p mat-label><strong>Editar eventos</strong></p>
   </div>
@@ -56,6 +61,9 @@
         <mat-panel-title>
           {{event.title}}
         </mat-panel-title>
+        <mat-panel-description>
+          Se inicia às {{event.startHour}}
+        </mat-panel-description>
       </mat-expansion-panel-header>
       <div>
         <div>
@@ -90,6 +98,9 @@
             <textarea matInput #message maxlength="128" [value]="event.description" matTextareaAutosize placeholder="Descrição"></textarea>
             <mat-hint align="end">{{message.value.length}} / 128</mat-hint>
           </mat-form-field>
+        </div>
+        <div fxLayout="row" fxFill>
+          <mat-slide-toggle color="warn" [checked]="!event.isActive">Cancelar evento.</mat-slide-toggle>
         </div>
       </div>
       <div class="mat-card-event" mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxFill>

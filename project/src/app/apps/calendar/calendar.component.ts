@@ -12,6 +12,8 @@ import { CalendarService } from './calendar.service';
 
 export class CalendarComponent implements OnInit {
 
+    public isLoading: boolean = true;
+
     public daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     public monthOfYear = [
         { month: 'Janeiro', color: '255, 255, 255' },
@@ -36,6 +38,8 @@ export class CalendarComponent implements OnInit {
     public currentMonthFull: string;
 
     public calendar = [];
+
+    public AllEvents;
 
     constructor(private dialog: MatDialog, private calendarService: CalendarService) { }
 
@@ -74,6 +78,7 @@ export class CalendarComponent implements OnInit {
         }
         this.indexDay = 0;
         this.getMonthDays();
+        this.putEvents(this.AllEvents);
     }
 
     public nextMonth(): void {
@@ -85,6 +90,7 @@ export class CalendarComponent implements OnInit {
 
         this.indexDay = 0;
         this.getMonthDays();
+        this.putEvents(this.AllEvents);
     }
 
     public getMonthDays(): void {
@@ -108,8 +114,8 @@ export class CalendarComponent implements OnInit {
                 day = 1;
                 monthBefore = month;
             }
-            this.calendar[i] = Object.assign({ day: day, isEnabled: this.isDisabled(day), events: []});
-            this.calendar[i].events.splice([]);
+            this.calendar[i] = Object.assign({ day: day, isEnabled: this.isDisabled(day), events: [] });
+            this.calendar[i].events.splice(0);
             day++;
         }
         this.chooseMonthColor(this.monthOfYear[this.currentMonth].color);
@@ -144,19 +150,25 @@ export class CalendarComponent implements OnInit {
     //
     //
 
-    public getAllEvents(): void {
+    private getAllEvents(): void {
         this.calendarService.getAll().subscribe(res => {
-            res.forEach(value => {
-                value.event.forEach(day => {
-                    for (let i = 0; i < 42; i++) {
-                        if ((this.calendar[i].day < 10 ? '0' : '') +
-                            `${this.calendar[i].day}/${this.currentMonth + 1}/${this.currentYear}` == day.startDay
-                            && !this.calendar[i].isDisabled) {
-                            this.calendar[i].events.push(day);
-                        }
+            this.AllEvents = res;
+            this.putEvents(res);
+        })
+    }
+
+    public putEvents(events): void {
+        events.forEach(value => {
+            value.event.forEach(day => {
+                for (let i = 0; i < 42; i++) {
+                    if ((this.calendar[i].day < 10 ? '0' : '') +
+                        `${this.calendar[i].day}/${this.currentMonth + 1}/${this.currentYear}` == day.startDay
+                        && !this.calendar[i].isDisabled) {
+                        this.calendar[i].events.push(day);
                     }
-                })
+                }
             })
         })
+        this.isLoading = false;
     }
 }

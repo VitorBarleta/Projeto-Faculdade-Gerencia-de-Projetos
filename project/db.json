@@ -10,7 +10,8 @@
           "endDay": "22/10/2018",
           "endHour": "19:00",
           "local": "Minha Casa",
-          "description": "Meu aniversário de 6 anos"
+          "description": "Meu aniversário de 6 anos",
+          "isActive": false
         },
         {
           "id": 1,
@@ -20,22 +21,36 @@
           "endDay": "15/10/2018",
           "endHour": "09:00",
           "local": "Irineu's Company",
-          "description": "Alinhamento do Projeto"
+          "description": "Alinhamento do Projeto",
+          "isActive": true
         }
       ]
     },
     {
       "id": 1,
       "event": [{
-        "id": 0,
-        "title": "Reunião da Empresa",
-        "startDay": "15/10/2018",
-        "startHour": "07:00",
-        "endDay": "16/10/2018",
-        "endHour": "09:00",
-        "local": "Irineu's Company",
-        "description": "Planning"
-      }]
+          "id": 0,
+          "title": "Reunião da Empresa",
+          "startDay": "15/10/2018",
+          "startHour": "07:00",
+          "endDay": "16/10/2018",
+          "endHour": "09:00",
+          "local": "Irineu's Company",
+          "description": "Planning",
+          "isActive": true
+        },
+        {
+          "id": 1,
+          "title": "Reunião da Empresa",
+          "startDay": "15/11/2018",
+          "startHour": "07:00",
+          "endDay": "16/11/2018",
+          "endHour": "09:00",
+          "local": "Irineu's Company",
+          "description": "Planning",
+          "isActive": true
+        }
+      ]
     }
   ]
 }

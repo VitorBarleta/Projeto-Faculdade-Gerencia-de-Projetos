@@ -1,3 +1,6 @@
+<div *ngIf="isLoading" class="spinner-content" fxLayout="row">
+  <mat-spinner class="spinner"></mat-spinner>
+</div>
 <div id="month-color" fxLayoutAlign="space-around center">
   <button mat-button (click)="beforeMonth()">
     <mat-icon>navigate_before</mat-icon>
@@ -18,12 +21,16 @@
     <mat-grid-tile>Sábado</mat-grid-tile>
   </mat-grid-tile-header>
   <mat-grid-tile *ngFor="let days of calendar" class="mat-elevation-z6" color="basic">
-      <button mat-button fxFill 
-      [ngStyle]="{'background-color': days.day == currentDay ? 'rgba(0, 0, 255, 0.3)' : 'none' }" 
+    <button mat-button fxFill [ngStyle]="{'background-color': days.day == currentDay ? 'rgba(0, 0, 255, 0.3)' : 'none'}"
       (click)="openDialog(days.day, days.events)" [disabled]="days.isEnabled">
-      <strong>
-        {{days.day}}
-      </strong>
+      <div fxFlex>
+        <strong fxLayoutAlign="end start">
+          {{days.day}}
+        </strong>
+        <div fxLayoutAlign="start end">
+          <mat-icon *ngFor="let not of days.events" [color]="not.isActive ? 'primary' : 'warn'">brightness_1</mat-icon>
+        </div>
+      </div>
     </button>
   </mat-grid-tile>
 </mat-grid-list>

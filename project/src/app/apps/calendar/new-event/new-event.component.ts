@@ -9,6 +9,8 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class NewEventComponent implements OnInit {
 
+  public isLoading: boolean = true;
+
   public formNewEvent: FormGroup;
 
   public formEditEvent: Array<FormGroup>;
@@ -35,7 +37,8 @@ export class NewEventComponent implements OnInit {
       endDay: ['',],
       endHour: [''],
       local: [''],
-      description: ['']
+      description: [''],
+      canceled: [false]
     });
   }
 
@@ -53,5 +56,6 @@ export class NewEventComponent implements OnInit {
   private datePatterns(date: number): string {
     if (date < 10) return `0${date}`;
     return `${date}`;
+    //this.isLoading = false;
   }
 }
