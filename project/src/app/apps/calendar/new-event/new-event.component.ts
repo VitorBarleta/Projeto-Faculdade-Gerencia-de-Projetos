@@ -13,7 +13,7 @@ export class NewEventComponent implements OnInit {
 
   public formNewEvent: FormGroup;
 
-  public formEditEvent: Array<FormGroup>;
+  public formEditEvent: Array<any> = [];
 
   public panelOpenState = false;
 
@@ -40,15 +40,33 @@ export class NewEventComponent implements OnInit {
       description: [''],
       canceled: [false]
     });
+    this.createFormEdit();
   }
 
-  private filterEvents(event: Array<any>){
+  private createFormEdit(): void {
+    for (let i = 0; i < this.savedEvents.length; i++) {
+      this.formEditEvent[i] = new FormBuilder().group({
+        id: [this.savedEvents.length],
+        title: [this.savedEvents[i].title, [Validators.required]],
+        startDay: [this.savedEvents[i].startDay],
+        startHour: [this.savedEvents[i].startHour],
+        endDay: [this.toDate(this.savedEvents[i].endDay)],
+        endHour: [this.savedEvents[i].endHour],
+        local: [this.savedEvents[i].local],
+        description: [this.savedEvents[i].description],
+        canceled: [this.savedEvents[i].isActive]
+      }
+      )
+    }
+  }
+
+  private filterEvents(event: Array<any>) {
     event.forEach(e => {
       this.savedEvents.push(e);
     })
   }
 
-  public toDate(day: string): Date{
+  public toDate(day: string): Date {
     let arr: Array<string> = day.split('/').reverse();
     return new Date(parseInt(arr[0]), parseInt(arr[1]) - 1, parseInt(arr[2]));
   }

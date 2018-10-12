@@ -11,7 +11,7 @@
           "endHour": "19:00",
           "local": "Minha Casa",
           "description": "Meu aniversário de 6 anos",
-          "isActive": false
+          "isActive": true
         },
         {
           "id": 1,
@@ -22,7 +22,7 @@
           "endHour": "09:00",
           "local": "Irineu's Company",
           "description": "Alinhamento do Projeto",
-          "isActive": true
+          "isActive": false
         }
       ]
     },
@@ -37,7 +37,7 @@
           "endHour": "09:00",
           "local": "Irineu's Company",
           "description": "Planning",
-          "isActive": true
+          "isActive": false
         },
         {
           "id": 1,
@@ -48,7 +48,7 @@
           "endHour": "09:00",
           "local": "Irineu's Company",
           "description": "Planning",
-          "isActive": true
+          "isActive": false
         }
       ]
     }

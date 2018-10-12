@@ -43,9 +43,6 @@
         <mat-hint align="end">{{message.value.length}} / 128</mat-hint>
       </mat-form-field>
     </div>
-    <div fxLayout="row" fxFill>
-      <mat-slide-toggle formControlName="canceled" color="warn">Cancelar evento.</mat-slide-toggle>
-    </div>
     <div mat-dialog-actions fxLayoutAlign="end center">
       <button mat-raised-button color="primary" [disabled]="!formNewEvent.valid">Salvar</button>
     </div>
@@ -56,55 +53,56 @@
     <p mat-label><strong>Editar eventos</strong></p>
   </div>
   <mat-accordion>
-    <mat-expansion-panel *ngFor="let event of savedEvents">
+    <mat-expansion-panel *ngFor="let formEdit of formEditEvent">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          {{event.title}}
+          {{formEdit.get('title').value}}
         </mat-panel-title>
         <mat-panel-description>
-          Se inicia às {{event.startHour}}
+          Se inicia às {{formEdit.get('startHour').value}}
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <div>
+      <form [formGroup]="formEdit">
         <div>
           <mat-form-field fxFill>
-            <input matInput placeholder="Título" [value]="event.title" required>
+            <input matInput placeholder="Título" formControlName="title" required>
+            <mat-error *ngIf="formEdit.get('title').touched && formEdit.get('title').hasError('required')">Obrigatório!</mat-error>
           </mat-form-field>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between center">
           <mat-form-field fxFlex="24">
-            <input matInput [value]="event.startDay" placeholder="Dia de Início" readonly>
+            <input matInput  placeholder="Dia de Início" formControlName="startDay" readonly>
           </mat-form-field>
           <mat-form-field fxFlex="24">
-            <input matInput type="time" [value]="event.startHour" placeholder="Hora de Início">
+            <input matInput type="time" formControlName="startHour" placeholder="Hora de Início">
           </mat-form-field>
           <mat-form-field fxFlex="24">
-            <input matInput [matDatepicker]="_endDay" [value]="toDate(event.endDay)" placeholder="Dia de Término"
+            <input matInput [matDatepicker]="_endDay" formControlName="endDay" placeholder="Dia de Término"
               readonly>
             <mat-datepicker-toggle matSuffix [for]="_endDay"></mat-datepicker-toggle>
             <mat-datepicker #_endDay color="primary"></mat-datepicker>
           </mat-form-field>
           <mat-form-field fxFlex="24">
-            <input matInput type="time" [value]="event.endHour" placeholder="Hora de Término">
+            <input matInput type="time" formControlName="endHour" placeholder="Hora de Término">
           </mat-form-field>
         </div>
         <div fxLayout="row" fxFill>
           <mat-form-field fxFill>
-            <input matInput [value]="event.local" placeholder="Localização">
+            <input matInput formControlName="local" placeholder="Localização">
           </mat-form-field>
         </div>
         <div fxLayout="row">
           <mat-form-field fxFill>
-            <textarea matInput #message maxlength="128" [value]="event.description" matTextareaAutosize placeholder="Descrição"></textarea>
+            <textarea matInput #message maxlength="128" formControlName="description" matTextareaAutosize placeholder="Descrição"></textarea>
             <mat-hint align="end">{{message.value.length}} / 128</mat-hint>
           </mat-form-field>
         </div>
         <div fxLayout="row" fxFill>
-          <mat-slide-toggle color="warn" [checked]="!event.isActive">Cancelar evento.</mat-slide-toggle>
+          <mat-slide-toggle color="warn" formControlName="canceled">Cancelar evento.</mat-slide-toggle>
         </div>
-      </div>
+      </form>
       <div class="mat-card-event" mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxFill>
-        <button mat-raised-button color="primary">Salvar</button>
+        <button mat-raised-button color="primary" [disabled]="!formEdit.valid">Salvar</button>
       </div>
     </mat-expansion-panel>
   </mat-accordion>

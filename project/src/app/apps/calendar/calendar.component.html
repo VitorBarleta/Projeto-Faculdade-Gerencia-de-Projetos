@@ -28,7 +28,7 @@
           {{days.day}}
         </strong>
         <div fxLayoutAlign="start end">
-          <mat-icon *ngFor="let not of days.events" [color]="not.isActive ? 'primary' : 'warn'">brightness_1</mat-icon>
+          <mat-icon *ngFor="let not of days.events" [color]="!not.isActive ? 'primary' : 'warn'">brightness_1</mat-icon>
         </div>
       </div>
     </button>
