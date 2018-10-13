@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { CalendarService } from '../calendar.service';
+import { DialogConfirmComponent } from '../../apps.component';
 
 @Component({
   selector: 'app-new-event',
@@ -9,7 +11,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class NewEventComponent implements OnInit {
 
-  public isLoading: boolean = true;
+  public isLoading = true;
 
   public formNewEvent: FormGroup;
 
@@ -19,26 +21,27 @@ export class NewEventComponent implements OnInit {
 
   public savedEvents: Array<any> = [];
 
-  public fullDate: string = `${this.data.day} de ${this.data.monthFull} de ${this.data.year}`
+  public fullDate = `${this.data.day} de ${this.data.monthFull} de ${this.data.year}`;
 
-  constructor(private dialogRef: MatDialogRef<NewEventComponent>,
+  constructor(private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) private data,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private calendarService: CalendarService
   ) {
     this.filterEvents(this.data.events);
   }
 
   ngOnInit() {
     this.formNewEvent = this.formBuilder.group({
-      id: [this.savedEvents.length],
+      id: [],
       title: ['', [Validators.required]],
       startDay: [`${this.datePatterns(this.data.day)}/${this.datePatterns(this.data.month + 1)}/${this.data.year}`],
       startHour: [''],
-      endDay: ['',],
+      endDay: [''],
       endHour: [''],
       local: [''],
       description: [''],
-      canceled: [false]
+      isActive: [false]
     });
     this.createFormEdit();
   }
@@ -46,34 +49,52 @@ export class NewEventComponent implements OnInit {
   private createFormEdit(): void {
     for (let i = 0; i < this.savedEvents.length; i++) {
       this.formEditEvent[i] = new FormBuilder().group({
-        id: [this.savedEvents.length],
+        id: [this.savedEvents[i].id],
         title: [this.savedEvents[i].title, [Validators.required]],
         startDay: [this.savedEvents[i].startDay],
         startHour: [this.savedEvents[i].startHour],
-        endDay: [this.toDate(this.savedEvents[i].endDay)],
+        endDay: [this.savedEvents[i].endDay],
         endHour: [this.savedEvents[i].endHour],
         local: [this.savedEvents[i].local],
         description: [this.savedEvents[i].description],
-        canceled: [this.savedEvents[i].isActive]
+        isActive: [this.savedEvents[i].isActive]
       }
-      )
+      );
     }
   }
 
   private filterEvents(event: Array<any>) {
     event.forEach(e => {
+      if (e.endDay !== '')
+        e.endDay = new Date(e.endDay);
       this.savedEvents.push(e);
-    })
-  }
-
-  public toDate(day: string): Date {
-    let arr: Array<string> = day.split('/').reverse();
-    return new Date(parseInt(arr[0]), parseInt(arr[1]) - 1, parseInt(arr[2]));
+    });
   }
 
   private datePatterns(date: number): string {
     if (date < 10) return `0${date}`;
     return `${date}`;
-    //this.isLoading = false;
+  }
+
+  public saveEvent(event): void {
+    this.calendarService.post(event);
+  }
+
+  public updateEvent(event): void {
+    this.calendarService.update(event);
+  }
+
+  public deleteEvent(event): void {
+    const dialogReference = this.dialog.open(DialogConfirmComponent, {
+      width: '400px',
+      data: event.title
+    });
+
+    dialogReference.afterClosed().subscribe(resp => {
+      if (resp) {
+        this.calendarService.delete(event.id);
+        this.formEditEvent.splice(event, 1);
+      }
+    });
   }
 }

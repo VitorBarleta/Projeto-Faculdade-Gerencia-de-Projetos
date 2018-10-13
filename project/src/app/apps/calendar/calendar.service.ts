@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -9,63 +10,46 @@ export class CalendarService {
 
   private _baseUrl = 'http://localhost:3000/' + /*id do user*/ 'events/';
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient,
+    private toastr: ToastrService) { }
 
   public getAll(): Observable<any[]> {
-      return this._http.get<any[]>(this._baseUrl);
+    return this._http.get<any[]>(this._baseUrl);
   }
 
-  public getById(id: number): Observable<any> {
-    try {
-      return this._http.get(`${this._baseUrl}/${id}`);
-    } catch{
-      alert("Não foi possível buscar os dados.");
-      return null;
-    }
+  public post(event: any) {
+
+    this._http.post(`${this._baseUrl}`, event).subscribe(() => {
+      this.toastr.success('O evento foi salvo com sucesso!');
+    },
+      () => this.toastr.error('Não foi possível salvar o evento. Tente novamente.'));
   }
 
-  public post(event: any): boolean {
-    try {
-      this._http.post(this._baseUrl, event).subscribe(() => {
-        alert("O evento foi salvo!");
-        return true;
+  public delete(id: number): any {
+    this._http.delete(`${this._baseUrl}${id}`).subscribe(() => {
+      this.toastr.success('O evento foi excluído.');
+    },
+      () => {
+        this.toastr.error('Não foi possível excluir o evento. Tente novamente.');
       });
-    } catch{
-      alert("Não foi possível salvar o evento. Tente novamente.");
-      return false;
-    }
   }
 
-  public delete(id: number): boolean {
-    try {
-      this._http.delete(`${this._baseUrl}/${id}`).subscribe(() => {
-        alert("O evento foi excluído.");
-        return true;
-      })
-    } catch{
-      alert("Não foi possível excluir o evento.");
-      return false;
-    }
-  }
-
-  public update(event: any): boolean {
-    try{
-      this._http.put(`${this._baseUrl}/${event.id}`, {
-        "id": event.id,
-        "title": event.title,
-        "startDay": event.startDay,
-        "startHour": event.startHour,
-        "endDay": event.endDay,
-        "endHour": event.endHour,
-        "local": event.local,
-        "description": event.description
-      }).subscribe(() => {
-        alert("O evento foi alterado.");
-        return true;
-      })
-    }catch{
-      alert("Não foi possível alterar o evento.");
-      return false;
-    }
+  public update(event: any): void {
+    this._http.put(`${this._baseUrl}${event.id}`, {
+      'id': event.id,
+      'title': event.title,
+      'startDay': event.startDay,
+      'startHour': event.startHour,
+      'endDay': event.endDay,
+      'endHour': event.endHour,
+      'local': event.local,
+      'description': event.description,
+      'isActive': event.isActive
+    }).subscribe(() => {
+      this.toastr.success('O evento foi alterado.');
+    },
+      () => {
+        this.toastr.error('Não foi possível alterar o evento.');
+      });
   }
 }

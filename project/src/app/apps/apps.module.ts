@@ -5,12 +5,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   MatButtonModule, MatInputModule, MatToolbarModule, MatIconModule, MatProgressSpinnerModule,
-  MatCardModule, MatTabsModule, MatGridListModule, MatDialogContent, MatDialogModule, MatDialogClose, MatDialogActions, MatDialogTitle, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatExpansionModule, MatSlideToggleModule
+  MatCardModule, MatTabsModule, MatGridListModule, MatDialogModule, MatSelectModule, MatDatepickerModule,
+  MatNativeDateModule, MAT_DATE_LOCALE, MatExpansionModule, MatSlideToggleModule
 } from '@angular/material';
 
 import 'hammerjs';
 import { Routes, RouterModule } from '@angular/router';
-import { AppsComponent } from './apps.component';
+import { AppsComponent, DialogConfirmComponent } from './apps.component';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { FastNotesComponent } from './fast-notes/fast-notes.component';
@@ -19,6 +20,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NewEventComponent } from './calendar/new-event/new-event.component';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 const route: Routes = [
   {
@@ -28,7 +30,7 @@ const route: Routes = [
       { path: 'calendar', component: CalendarComponent }
     ]
   }
-]
+];
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ const route: Routes = [
     HomeComponent,
     FastNotesComponent,
     CalendarComponent,
-    NewEventComponent
+    NewEventComponent,
+    DialogConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ const route: Routes = [
     MatExpansionModule,
     MatProgressSpinnerModule,
     MatSlideToggleModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   exports: [
   ],
@@ -67,6 +71,6 @@ const route: Routes = [
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}
   ],
   bootstrap: [],
-  entryComponents: [NewEventComponent]
+  entryComponents: [NewEventComponent, DialogConfirmComponent]
 })
 export class AppsModule { }

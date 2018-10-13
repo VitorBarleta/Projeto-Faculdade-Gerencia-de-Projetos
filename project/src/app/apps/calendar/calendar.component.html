@@ -5,7 +5,7 @@
   <button mat-button (click)="beforeMonth()">
     <mat-icon>navigate_before</mat-icon>
   </button>
-  <h1>{{currentMonthFull}}</h1>
+  <h1>{{currentMonthFull}} de {{currentYear}}</h1>
   <button mat-button (click)="nextMonth()">
     <mat-icon>navigate_next</mat-icon>
   </button>
@@ -27,7 +27,7 @@
         <strong fxLayoutAlign="end start">
           {{days.day}}
         </strong>
-        <div fxLayoutAlign="start end">
+        <div fxLayoutAlign="start end" *ngIf="!days.isEnabled">
           <mat-icon *ngFor="let not of days.events" [color]="!not.isActive ? 'primary' : 'warn'">brightness_1</mat-icon>
         </div>
       </div>

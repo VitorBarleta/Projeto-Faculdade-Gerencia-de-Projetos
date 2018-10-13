@@ -5,3 +5,7 @@
 .menu-item{
     cursor: pointer;
 }
+
+mat-ink-bar{
+    visibility: visible;
+}

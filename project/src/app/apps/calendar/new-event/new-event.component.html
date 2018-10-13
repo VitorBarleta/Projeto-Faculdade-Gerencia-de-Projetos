@@ -44,12 +44,12 @@
       </mat-form-field>
     </div>
     <div mat-dialog-actions fxLayoutAlign="end center">
-      <button mat-raised-button color="primary" [disabled]="!formNewEvent.valid">Salvar</button>
+      <button mat-raised-button color="primary" [disabled]="!formNewEvent.valid" (click)="saveEvent(formNewEvent.value)">Salvar</button>
     </div>
   </mat-card>
 </form>
 <div>
-  <div *ngIf="savedEvents.length != 0" class="mat-card-event">
+  <div *ngIf="formEditEvent.length != 0 " class="mat-card-event">
     <p mat-label><strong>Editar eventos</strong></p>
   </div>
   <mat-accordion>
@@ -77,10 +77,10 @@
             <input matInput type="time" formControlName="startHour" placeholder="Hora de Início">
           </mat-form-field>
           <mat-form-field fxFlex="24">
-            <input matInput [matDatepicker]="_endDay" formControlName="endDay" placeholder="Dia de Término"
+            <input matInput [matDatepicker]="endDay" formControlName="endDay" placeholder="Dia de Término"
               readonly>
-            <mat-datepicker-toggle matSuffix [for]="_endDay"></mat-datepicker-toggle>
-            <mat-datepicker #_endDay color="primary"></mat-datepicker>
+            <mat-datepicker-toggle matSuffix [for]="endDay"></mat-datepicker-toggle>
+            <mat-datepicker #endDay color="primary"></mat-datepicker>
           </mat-form-field>
           <mat-form-field fxFlex="24">
             <input matInput type="time" formControlName="endHour" placeholder="Hora de Término">
@@ -98,11 +98,12 @@
           </mat-form-field>
         </div>
         <div fxLayout="row" fxFill>
-          <mat-slide-toggle color="warn" formControlName="canceled">Cancelar evento.</mat-slide-toggle>
+          <mat-slide-toggle color="warn" formControlName="isActive">Cancelar evento.</mat-slide-toggle>
         </div>
       </form>
       <div class="mat-card-event" mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxFill>
-        <button mat-raised-button color="primary" [disabled]="!formEdit.valid">Salvar</button>
+        <button mat-raised-button color="warn" (click)="deleteEvent(formEdit.value)">Excluir</button>
+        <button mat-raised-button color="primary" [disabled]="!formEdit.valid" (click)="updateEvent(formEdit.value)">Salvar</button>
       </div>
     </mat-expansion-panel>
   </mat-accordion>

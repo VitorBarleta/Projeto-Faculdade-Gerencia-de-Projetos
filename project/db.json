@@ -1,56 +1,92 @@
 {
-
-  "events": [{
+  "events": [
+    {
       "id": 0,
-      "event": [{
-          "id": 0,
-          "title": "Aniversário",
-          "startDay": "22/10/2018",
-          "startHour": "15:00",
-          "endDay": "22/10/2018",
-          "endHour": "19:00",
-          "local": "Minha Casa",
-          "description": "Meu aniversário de 6 anos",
-          "isActive": true
-        },
-        {
-          "id": 1,
-          "title": "Reunião da Empresa",
-          "startDay": "15/10/2018",
-          "startHour": "07:00",
-          "endDay": "15/10/2018",
-          "endHour": "09:00",
-          "local": "Irineu's Company",
-          "description": "Alinhamento do Projeto",
-          "isActive": false
-        }
-      ]
+      "title": "Aniversário",
+      "startDay": "22/10/2018",
+      "startHour": "15:00",
+      "endDay": "2018-10-22T03:00:00.000Z",
+      "endHour": "19:00",
+      "local": "Minha Casa",
+      "description": "Meu aniversário de 6 anos bla bla bla",
+      "isActive": true
     },
     {
       "id": 1,
-      "event": [{
-          "id": 0,
-          "title": "Reunião da Empresa",
-          "startDay": "15/10/2018",
-          "startHour": "07:00",
-          "endDay": "16/10/2018",
-          "endHour": "09:00",
-          "local": "Irineu's Company",
-          "description": "Planning",
-          "isActive": false
-        },
-        {
-          "id": 1,
-          "title": "Reunião da Empresa",
-          "startDay": "15/11/2018",
-          "startHour": "07:00",
-          "endDay": "16/11/2018",
-          "endHour": "09:00",
-          "local": "Irineu's Company",
-          "description": "Planning",
-          "isActive": false
-        }
-      ]
+      "title": "Reunião da Empresa",
+      "startDay": "15/10/2018",
+      "startHour": "07:00",
+      "endDay": "2018-10-15T03:00:00.000Z",
+      "endHour": "09:00",
+      "local": "Irineu's Company",
+      "description": "Alinhamento do Projeto",
+      "isActive": false
+    },
+    {
+      "id": 2,
+      "title": "Reunião da Empresa",
+      "startDay": "15/10/2018",
+      "startHour": "07:00",
+      "endDay": "2018-10-16T03:00:00.000Z",
+      "endHour": "09:00",
+      "local": "Irineu's Company",
+      "description": "Planning",
+      "isActive": false
+    },
+    {
+      "id": 3,
+      "title": "Reunião da Empresa",
+      "startDay": "15/11/2018",
+      "startHour": "07:00",
+      "endDay": "16/11/2018",
+      "endHour": "09:00",
+      "local": "Irineu's Company",
+      "description": "Planning",
+      "isActive": false
+    },
+    {
+      "id": 4,
+      "title": "Qualquer merda",
+      "startDay": "19/11/2018",
+      "startHour": "19:00",
+      "endDay": "19/11/2018",
+      "endHour": "23:00",
+      "local": "Casa do Irineu",
+      "description": "Qualquer coisa",
+      "isActive": false
+    },
+    {
+      "id": 6,
+      "title": "afrtert",
+      "startDay": "16/10/2018",
+      "startHour": "",
+      "endDay": "",
+      "endHour": "",
+      "local": "erterterter",
+      "description": "erterterter",
+      "isActive": false
+    },
+    {
+      "id": 8,
+      "title": "TESTANDO  O TESTE TESTADOR",
+      "startDay": "09/10/2018",
+      "startHour": "",
+      "endDay": "2018-10-07T03:00:00.000Z",
+      "endHour": "",
+      "local": "",
+      "description": "",
+      "isActive": true
+    },
+    {
+      "id": 10,
+      "title": "hu3hu3hu3hu3hu3",
+      "startDay": "23/10/2018",
+      "startHour": "",
+      "endDay": "",
+      "endHour": "",
+      "local": "",
+      "description": "",
+      "isActive": false
     }
   ]
 }
