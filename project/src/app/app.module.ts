@@ -13,6 +13,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppsModule } from './apps/apps.module';
 import { Error404Component } from './error404/error404.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 const route: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -29,6 +31,7 @@ const route: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    CommonModule,
     RouterModule.forRoot(route),
     MatButtonModule,
     MatInputModule,
@@ -36,15 +39,10 @@ const route: Routes = [
     MatIconModule,
     MatCardModule,
     FlexLayoutModule,
-    AppsModule
+    AppsModule,
+    ReactiveFormsModule
   ],
   exports: [
-    MatButtonModule,
-    MatInputModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatCardModule,
-    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

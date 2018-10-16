@@ -1,3 +1,47 @@
-<p>
-  login works!
-</p>
+<div id="main-login" fxFill fxLayoutAlign="center center">
+  <div fxFlex.xs="100" fxFlex.sm="60" fxFlex="40">
+    <div fxFill fxLayout="column">
+      <mat-card>
+        <div class="mat-dialog-title" fxLayout="row" fxLayoutAlign="space-between center">
+          <h3 mat-label>OrganizYou</h3>
+        </div>
+        <form [formGroup]="loginForm" fxFill>
+          <div>
+            <p mat-label>Entrar com uma conta já existente.</p>
+          </div>
+          <div fxLayout="row">
+            <mat-form-field fxFill>
+              <input matInput type="email" formControlName="login" placeholder="Login" required>
+              <mat-error *ngIf="loginForm.get('login').touched && loginForm.get('login').hasError('minlength')">E-mail
+                muito curto.</mat-error>
+              <mat-error *ngIf="loginForm.get('login').touched && loginForm.get('login').hasError('email') || loginForm.get('login').hasError('required')">Informe
+                um
+                Login válido.</mat-error>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row">
+            <mat-form-field fxFill>
+              <input maxlength="63" matInput [type]="passwordOption" formControlName="password" placeholder="Senha" required>
+              <button matSuffix mat-icon-button (click)="visibilityPassword()">
+                <mat-icon>{{ passwordIcon }}</mat-icon>
+              </button>
+              <mat-error *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError('required')">Informe
+                uma Senha válida.</mat-error>
+              <mat-error *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError('minlength')">A
+                senha deve ter no mínimo 8 caracteres.</mat-error>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row">
+            <a mat-label href="#">Esqueceu a senha?</a>
+          </div>
+          <div fxLayout="row">
+            <p mat-label>Não tem uma conta? <a mat-label href="#">Crie uma.</a></p>
+          </div>
+          <div mat-card-actions fxLayoutAlign="end center">
+            <button mat-raised-button color="primary" [disabled]="!loginForm.valid">{{ Action }}</button>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -58,7 +58,7 @@
         <mat-panel-title>
           {{formEdit.get('title').value}}
         </mat-panel-title>
-        <mat-panel-description>
+        <mat-panel-description *ngIf="formEdit.get('startHour').value != ''">
           Se inicia às {{formEdit.get('startHour').value}}
         </mat-panel-description>
       </mat-expansion-panel-header>
