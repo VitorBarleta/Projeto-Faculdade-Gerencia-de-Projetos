@@ -1,3 +1,33 @@
-<p>
-  fast-notes works!
-</p>
+<div *ngIf="isLoading" class="spinner-content" fxLayout="row">
+  <mat-spinner class="spinner"></mat-spinner>
+</div>
+<div fxLayout="column">
+  <mat-card class="content">
+    <div fxLayout="row" fxLayoutAlign="end none">
+      <button mat-fab color="primary" (click)="addNotes()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <mat-grid-list cols="3" rowHeight="1:1">
+      <mat-grid-tile *ngFor="let formNotes of formEditNotes">
+        <mat-card fxFlex="95">
+          <form [formGroup]="formNotes">
+            <div class="form">
+              <mat-form-field class="form-full-width">
+                <input matInput placeholder="Título" formControlName="title" />
+              </mat-form-field>
+              <mat-form-field class="form-full-width">
+                <textarea matInput placeholder="Anotação" rows="5" formControlName="content"></textarea>
+              </mat-form-field>
+            </div>
+          </form>
+          <div fxLayoutAlign="end none">
+            <button mat-icon-button (click)="delete(formNotes.get('id').value)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+</div>
