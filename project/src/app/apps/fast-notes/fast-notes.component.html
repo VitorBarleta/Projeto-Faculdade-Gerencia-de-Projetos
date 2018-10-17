@@ -3,26 +3,27 @@
 </div>
 <div fxLayout="column">
   <mat-card class="content">
-    <div fxLayout="row" fxLayoutAlign="end none">
-      <button mat-fab color="primary" (click)="addNotes()">
+    <label fxLayoutAlign="center center" fxFill *ngIf="formEditNotes.length == 0">Não há nenhuma anotação ainda.</label>
+    <div class="btn-add">
+      <button mat-fab color="primary" (click)="addNote()">
         <mat-icon>add</mat-icon>
       </button>
     </div>
     <mat-grid-list cols="3" rowHeight="1:1">
-      <mat-grid-tile *ngFor="let formNotes of formEditNotes">
-        <mat-card fxFlex="95">
+      <mat-grid-tile *ngFor="let formNotes of formEditNotes" (mouseleave)="removeNote()">
+        <mat-card fxFlex="95" (click)="updateNote(formNotes.value)" style="background-color: rgba(255, 0, 0, 0.2)">
           <form [formGroup]="formNotes">
-            <div class="form">
-              <mat-form-field class="form-full-width">
-                <input matInput placeholder="Título" formControlName="title" />
+            <div fxFill>
+              <mat-form-field fxFill>
+                <input matInput placeholder="Título" formControlName="title" readonly/>
               </mat-form-field>
-              <mat-form-field class="form-full-width">
-                <textarea matInput placeholder="Anotação" rows="5" formControlName="content"></textarea>
+              <mat-form-field fxFill>
+                <textarea matInput placeholder="Anotação" rows="5" formControlName="content" readonly></textarea>
               </mat-form-field>
             </div>
           </form>
           <div fxLayoutAlign="end none">
-            <button mat-icon-button (click)="delete(formNotes.get('id').value)">
+            <button mat-icon-button (click)="delete(formNotes.value)">
               <mat-icon>delete</mat-icon>
             </button>
           </div>

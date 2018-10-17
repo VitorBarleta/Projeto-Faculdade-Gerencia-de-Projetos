@@ -1,0 +1,20 @@
+<form [formGroup]="DialogForm">
+  <div fxFill>
+    <mat-form-field fxFill>
+      <input matInput placeholder="Título" formControlName="title" />
+    </mat-form-field>
+    <mat-form-field fxFill>
+      <textarea matInput placeholder="Anotação" rows="5" formControlName="content"></textarea>
+    </mat-form-field>
+  </div>
+</form>
+<div mat-dialog-actions fxFill fxLayoutAlign="end center">
+  <button mat-icon-button color="primary" matTooltip="Salvar" (click)="isUpdating ? update(DialogForm.value) : post(DialogForm.value)">
+    <mat-icon>save</mat-icon>
+  </button>
+  <button mat-icon-button color="warn" matTooltip="Fechar" mat-dialog-close>
+    <mat-icon>
+      close
+    </mat-icon>
+  </button>
+</div>

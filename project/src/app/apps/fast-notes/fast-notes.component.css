@@ -1,5 +1,7 @@
 .content{
     margin: 10px;
+    margin-top: 40px;
+    background-color: whitesmoke;
 }
 
 .form {
@@ -23,5 +25,11 @@
     left: 50%;
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
+}
+
+.btn-add{
+    position: absolute;
+    right: 15px;
+    top: -25px;
 }
   

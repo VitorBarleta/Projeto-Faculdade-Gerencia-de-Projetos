@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { CalendarService } from '../calendar.service';
 import { DialogConfirmComponent } from '../../apps.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-new-event',
@@ -26,7 +27,8 @@ export class NewEventComponent implements OnInit {
   constructor(private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) private data,
     private formBuilder: FormBuilder,
-    private calendarService: CalendarService
+    private calendarService: CalendarService,
+    private toastr: ToastrService
   ) {
     this.filterEvents(this.data.events);
   }
@@ -87,13 +89,21 @@ export class NewEventComponent implements OnInit {
   public deleteEvent(event): void {
     const dialogReference = this.dialog.open(DialogConfirmComponent, {
       width: '400px',
-      data: event.title
+      data: {
+        title: event.title,
+        type: 'o evento'
+      }
     });
 
     dialogReference.afterClosed().subscribe(resp => {
       if (resp) {
-        this.calendarService.delete(event.id);
-        this.formEditEvent.splice(event, 1);
+        this.calendarService.delete(event.id).subscribe(() => {
+          this.toastr.success('O evento foi excluído.');
+          this.formEditEvent.splice(event, 1);
+        },
+          () => {
+            this.toastr.error('Não foi possível excluir o evento. Tente novamente.');
+          });
       }
     });
   }

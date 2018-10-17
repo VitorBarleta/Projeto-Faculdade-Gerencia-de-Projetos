@@ -25,13 +25,8 @@ export class CalendarService {
       () => this.toastr.error('Não foi possível salvar o evento. Tente novamente.'));
   }
 
-  public delete(id: number): any {
-    this._http.delete(`${this._baseUrl}${id}`).subscribe(() => {
-      this.toastr.success('O evento foi excluído.');
-    },
-      () => {
-        this.toastr.error('Não foi possível excluir o evento. Tente novamente.');
-      });
+  public delete(id: number): Observable<any> {
+    return this._http.delete(`${this._baseUrl}${id}`);
   }
 
   public update(event: any): void {

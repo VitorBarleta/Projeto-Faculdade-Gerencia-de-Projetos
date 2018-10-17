@@ -18,7 +18,7 @@ export class AppsComponent implements OnInit {
   selector: 'app-modal-config',
   template: `
     <div mat-dialog-title>Confirmação</div>
-    <label mat-label>Realmente quer excluir o evento: <strong>{{ data }}</strong>?</label>
+    <label mat-label>Realmente quer excluir {{ data.type }}: <strong>{{ data.title }}</strong>?</label>
     <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
       <button mat-raised-button color="primary" (click)="closeConfirm(false)">Não</button>
       <button mat-raised-button color="warn" (click)="closeConfirm(true)">Sim</button>

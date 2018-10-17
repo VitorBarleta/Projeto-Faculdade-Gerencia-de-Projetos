@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatInputModule, MatToolbarModule, MatIconModule, MatProgressSpinnerModule,
   MatCardModule, MatTabsModule, MatGridListModule, MatDialogModule, MatSelectModule, MatDatepickerModule,
-  MatNativeDateModule, MAT_DATE_LOCALE, MatExpansionModule, MatSlideToggleModule
+  MatNativeDateModule, MAT_DATE_LOCALE, MatExpansionModule, MatSlideToggleModule, MatTooltipModule
 } from '@angular/material';
 
 import 'hammerjs';
@@ -21,6 +21,7 @@ import { NewEventComponent } from './calendar/new-event/new-event.component';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { FastNotesDialogComponent } from './fast-notes/fast-notes-dialog/fast-notes-dialog.component';
 
 const route: Routes = [
   {
@@ -39,7 +40,8 @@ const route: Routes = [
     FastNotesComponent,
     CalendarComponent,
     NewEventComponent,
-    DialogConfirmComponent
+    DialogConfirmComponent,
+    FastNotesDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,7 @@ const route: Routes = [
     MatDatepickerModule,
     MatNativeDateModule,
     MatExpansionModule,
+    MatTooltipModule,
     MatProgressSpinnerModule,
     MatSlideToggleModule,
     HttpClientModule,
@@ -71,6 +74,6 @@ const route: Routes = [
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}
   ],
   bootstrap: [],
-  entryComponents: [NewEventComponent, DialogConfirmComponent]
+  entryComponents: [NewEventComponent, DialogConfirmComponent, FastNotesDialogComponent]
 })
 export class AppsModule { }
