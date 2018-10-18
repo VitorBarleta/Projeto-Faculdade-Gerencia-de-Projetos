@@ -29,7 +29,6 @@ export class FastNotesComponent implements OnInit {
   }
 
   public removeNote(): void {
-    console.log(this.formEditNotes[this.formEditNotes.length - 1].get('content').value)
     if (this.formEditNotes[this.formEditNotes.length - 1].get('title').value === '' &&
       this.formEditNotes[this.formEditNotes.length - 1].get('content').value === '') {
       this.formEditNotes.splice(this.formEditNotes.length - 1, 1);
@@ -41,15 +40,6 @@ export class FastNotesComponent implements OnInit {
     }
   }
 
-  // public addNote(): void {
-  //   this.formEditNotes.push(new FormBuilder().group({
-  //     id: [this.formEditNotes.length],
-  //     title: ['', Validators.required],
-  //     content: ['', Validators.required]
-  //   }));
-  //   this.isSaving = true;
-  // }
-
   public addNote(): void {
     const dialogRef = this.dialog.open(FastNotesDialogComponent, {
       width: '500px'
@@ -58,6 +48,10 @@ export class FastNotesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {
       this.get();
     });
+  }
+
+  public convertColor(color: any): string {
+    return 'rgba(' + parseInt(color.slice(-6, -4), 16) + ',' + parseInt(color.slice(-4, -2), 16) + ',' + parseInt(color.slice(-2), 16) + ',' + '0.2' + ')';
   }
 
   public updateNote(form: any): void {
@@ -85,8 +79,9 @@ export class FastNotesComponent implements OnInit {
     for (let i = 0; i < data.length; i++) {
       this.formEditNotes[i] = new FormBuilder().group({
         id: [data[i].id],
-        title: [data[i].title, [Validators.required]],
-        content: [data[i].content, [Validators.required]]
+        title: [data[i].title],
+        content: [data[i].content],
+        color: [data[i].color]
       });
     }
     this.isLoading = false;

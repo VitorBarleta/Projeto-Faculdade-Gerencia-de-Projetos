@@ -31,7 +31,8 @@ export class FastNotesDialogComponent implements OnInit {
     this.DialogForm = new FormBuilder().group({
       id: [],
       title: [],
-      content: []
+      content: [],
+      color: []
     })
   }
 
@@ -39,7 +40,8 @@ export class FastNotesDialogComponent implements OnInit {
     this.DialogForm = new FormBuilder().group({
       id: [this.data.id],
       title: [this.data.title],
-      content: [this.data.content]
+      content: [this.data.content],
+      color: [this.data.color]
     })
   }
 

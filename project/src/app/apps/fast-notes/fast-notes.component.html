@@ -11,7 +11,7 @@
     </div>
     <mat-grid-list cols="3" rowHeight="1:1">
       <mat-grid-tile *ngFor="let formNotes of formEditNotes" (mouseleave)="removeNote()">
-        <mat-card fxFlex="95" (click)="updateNote(formNotes.value)" style="background-color: rgba(255, 0, 0, 0.2)">
+        <mat-card fxFlex="95" (click)="updateNote(formNotes.value)" [ngStyle]="{'background-color': formNotes.get('color') == '' ? 'rgb(255, 255, 255)' : convertColor(formNotes.get('color').value)}">
           <form [formGroup]="formNotes">
             <div fxFill>
               <mat-form-field fxFill>

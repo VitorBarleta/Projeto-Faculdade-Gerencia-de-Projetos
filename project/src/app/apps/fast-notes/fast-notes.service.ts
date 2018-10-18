@@ -28,7 +28,8 @@ export class FastNotesService {
     this._http.put(`${this._baseUrl}/${notes.id}`, {
       "id": notes.id,
       "title": notes.title,
-      "content": notes.content
+      "content": notes.content,
+      "color": notes.color
     }).subscribe(() => {
       this.toastr.success('A anotação foi atualizada.');
     },

@@ -2,11 +2,11 @@
   <mat-spinner class="spinner"></mat-spinner>
 </div>
 <div id="month-color" fxLayoutAlign="space-around center">
-  <button mat-button (click)="beforeMonth()">
+  <button mat-button matTooltip="Mês anterior" (click)="beforeMonth()">
     <mat-icon>navigate_before</mat-icon>
   </button>
   <h1>{{currentMonthFull}} de {{currentYear}}</h1>
-  <button mat-button (click)="nextMonth()">
+  <button mat-button matTooltip="Próximo mês" (click)="nextMonth()">
     <mat-icon>navigate_next</mat-icon>
   </button>
 </div>

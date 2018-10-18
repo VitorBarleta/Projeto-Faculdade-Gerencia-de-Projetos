@@ -7,6 +7,10 @@
       <textarea matInput placeholder="Anotação" rows="5" formControlName="content"></textarea>
     </mat-form-field>
   </div>
+  <div>
+    <label>Cor</label>
+    <input matTooltip="Selecione a cor" class="mat-button" placeholder="Cor" formControlName="color" type="color">
+  </div>
 </form>
 <div mat-dialog-actions fxFill fxLayoutAlign="end center">
   <button mat-icon-button color="primary" matTooltip="Salvar" (click)="isUpdating ? update(DialogForm.value) : post(DialogForm.value)">

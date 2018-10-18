@@ -82,22 +82,38 @@
     {
       "id": 0,
       "title": "fhskdnfsdljf sdf sd",
-      "content": "idfnasmfnsjdnfskdnfsjdnfksdnfa;lsdnfOISENFBJwenfkjWEBIFOEBKJFBfbdsf"
+      "content": "idfnasmfnsjdnfskdnfsjdnfksdnfa;lsdnfOISENFBJwenfkjWEBIFOEBKJFBfbdsf",
+      "color": "#00ff00"
     },
     {
       "id": 1,
       "title": "TESTANDO  O TESTE TESTADOR",
-      "content": "bla bla blateste teste"
+      "content": "bla bla blateste teste",
+      "color": "#ffff00"
     },
     {
       "id": 2,
       "title": "ksndf jsdbfwjebfwejbfwjk",
-      "content": "skdnfjsnelkqwnwnelqnwbefjwnbljqbwkjebfjabdkhfbejfajkdbfksjdbfksjdbfjsdbfkjsbdfkjsdbfkshdf"
+      "content": "skdnfjsnelkqwnwnelqnwbefjwnbljqbwkjebfjabdkhfbejfajkdbfksjdbfksjdbfjsdbfkjsbdfkjsdbfkshdf",
+      "color": "#0000ff"
     },
     {
       "id": 3,
       "title": "pmomwqope",
-      "content": "wmefklwe"
+      "content": "wmefklwe",
+      "color": "#ff00ff"
+    },
+    {
+      "id": 4,
+      "title": "Testando a cor",
+      "content": "blablablabalbalbla",
+      "color": "#800040"
+    },
+    {
+      "id": 5,
+      "title": null,
+      "content": null,
+      "color": "#ff0000"
     }
   ]
 }
