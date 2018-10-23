@@ -9,8 +9,8 @@
         <mat-icon>add</mat-icon>
       </button>
     </div>
-    <mat-grid-list cols="3" rowHeight="1:1">
-      <mat-grid-tile *ngFor="let formNotes of formEditNotes" (mouseleave)="removeNote()">
+    <mat-grid-list cols="3">
+      <mat-grid-tile *ngFor="let formNotes of formEditNotes">
         <mat-card fxFlex="95" (click)="updateNote(formNotes.value)" [ngStyle]="{'background-color': formNotes.get('color') == '' ? 'rgb(255, 255, 255)' : convertColor(formNotes.get('color').value)}">
           <form [formGroup]="formNotes">
             <div fxFill>

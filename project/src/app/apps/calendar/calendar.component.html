@@ -10,7 +10,7 @@
     <mat-icon>navigate_next</mat-icon>
   </button>
 </div>
-<mat-grid-list cols="7" rowHeight="2.62:1">
+<mat-grid-list cols="7" [rowHeight]="rowHeight">
   <mat-grid-tile-header>
     <mat-grid-tile>Domingo</mat-grid-tile>
     <mat-grid-tile>Segunda-Feira</mat-grid-tile>
@@ -28,7 +28,7 @@
           {{days.day}}
         </strong>
         <div fxLayoutAlign="start end" *ngIf="!days.isEnabled">
-          <mat-icon *ngFor="let not of days.events" [color]="!not.isActive ? 'primary' : 'warn'">brightness_1</mat-icon>
+          <mat-icon *ngFor="let not of days.events" [color]="!not.isActive ? 'primary' : 'warn'">event_note</mat-icon>
         </div>
       </div>
     </button>

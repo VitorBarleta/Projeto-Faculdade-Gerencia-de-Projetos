@@ -27,19 +27,7 @@ export class FastNotesComponent implements OnInit {
   ngOnInit() {
     this.get();
   }
-
-  public removeNote(): void {
-    if (this.formEditNotes[this.formEditNotes.length - 1].get('title').value === '' &&
-      this.formEditNotes[this.formEditNotes.length - 1].get('content').value === '') {
-      this.formEditNotes.splice(this.formEditNotes.length - 1, 1);
-      this.isSaving = false;
-    }
-    else if (this.isSaving) {
-      this.service.setNotes(this.formEditNotes[this.formEditNotes.length - 1].value);
-      this.isSaving = false;
-    }
-  }
-
+  
   public addNote(): void {
     const dialogRef = this.dialog.open(FastNotesDialogComponent, {
       width: '500px'

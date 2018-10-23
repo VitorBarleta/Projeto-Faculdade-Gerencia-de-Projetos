@@ -37,6 +37,7 @@ export class CalendarComponent implements OnInit {
     public currentYear: number;
     public currentMonthFull: string;
     private indexDay = 0;
+    public rowHeight: string = `${window.innerHeight / 9.1}px`;
 
     public calendar = [];
 
@@ -72,6 +73,9 @@ export class CalendarComponent implements OnInit {
         this.currentMonth = new Date().getMonth();
         this.currentYear = new Date().getFullYear();
         this.getMonthDays();
+        window.addEventListener('resize', () => {
+            this.rowHeight = `${window.innerHeight / 9.1}px`;
+        })
     }
 
     public calculateLeapYear(year: number) {

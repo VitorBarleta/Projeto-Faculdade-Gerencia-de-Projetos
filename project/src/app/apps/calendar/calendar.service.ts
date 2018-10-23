@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CalendarService {
 
-  private _baseUrl = 'http://localhost:3000/' + /*id do user*/ 'events/';
+  private _baseUrl = 'http://localhost:3000/events/';
 
   constructor(private _http: HttpClient,
     private toastr: ToastrService) { }

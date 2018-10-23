@@ -55,11 +55,16 @@
   <mat-accordion>
     <mat-expansion-panel *ngFor="let formEdit of formEditEvent">
       <mat-expansion-panel-header>
-        <mat-panel-title>
+        <mat-panel-title fxLayoutAlign="none center">
           {{formEdit.get('title').value}}
         </mat-panel-title>
-        <mat-panel-description *ngIf="formEdit.get('startHour').value != ''">
-          Se inicia às {{formEdit.get('startHour').value}}
+        <mat-panel-description *ngIf="formEdit.get('startHour').value != ''" fxLayoutAlign="space-between center">
+          <div>
+            <p mat-label>Se inicia às {{formEdit.get('startHour').value}}</p>
+          </div>
+          <div *ngIf="formEdit.get('isActive').value">
+            <p mat-label style="color: red">(cancelado)</p>
+          </div>
         </mat-panel-description>
       </mat-expansion-panel-header>
       <form [formGroup]="formEdit">
