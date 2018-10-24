@@ -1,7 +1,7 @@
+<div *ngIf="isLoading" class="spinner-content">
+  <mat-spinner class="spinner"></mat-spinner>
+</div>
 <div @fade>
-  <div *ngIf="isLoading" class="spinner-content">
-    <mat-spinner class="spinner"></mat-spinner>
-  </div>
   <div fxLayout="column">
     <mat-card class="content">
       <label fxLayoutAlign="center center" fxFill *ngIf="formEditNotes.length == 0">Não há nenhuma anotação ainda.</label>
