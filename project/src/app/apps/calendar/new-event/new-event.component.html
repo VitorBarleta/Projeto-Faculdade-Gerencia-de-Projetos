@@ -58,11 +58,11 @@
         <mat-panel-title fxLayoutAlign="none center">
           {{formEdit.get('title').value}}
         </mat-panel-title>
-        <mat-panel-description *ngIf="formEdit.get('startHour').value != ''" fxLayoutAlign="space-between center">
-          <div>
+        <mat-panel-description fxLayout="row">
+          <div *ngIf="formEdit.get('startHour').value != ''" fxFlex="100" fxLayoutAlign="none center">
             <p mat-label>Se inicia às {{formEdit.get('startHour').value}}</p>
           </div>
-          <div *ngIf="formEdit.get('isActive').value">
+          <div *ngIf="formEdit.get('isActive').value" fxFlex="100" fxLayoutAlign="end center">
             <p mat-label style="color: red">(cancelado)</p>
           </div>
         </mat-panel-description>

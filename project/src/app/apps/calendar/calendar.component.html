@@ -1,36 +1,38 @@
-<div *ngIf="isLoading" class="spinner-content" fxLayout="row">
-  <mat-spinner class="spinner"></mat-spinner>
-</div>
-<div id="month-color" fxLayoutAlign="space-around center">
-  <button mat-button matTooltip="Mês anterior" (click)="beforeMonth()">
-    <mat-icon>navigate_before</mat-icon>
-  </button>
-  <h1>{{currentMonthFull}} de {{currentYear}}</h1>
-  <button mat-button matTooltip="Próximo mês" (click)="nextMonth()">
-    <mat-icon>navigate_next</mat-icon>
-  </button>
-</div>
-<mat-grid-list cols="7" [rowHeight]="rowHeight">
-  <mat-grid-tile-header>
-    <mat-grid-tile>Domingo</mat-grid-tile>
-    <mat-grid-tile>Segunda-Feira</mat-grid-tile>
-    <mat-grid-tile>Terça-Feira</mat-grid-tile>
-    <mat-grid-tile>Quarta-Feira</mat-grid-tile>
-    <mat-grid-tile>Quinta-Feira</mat-grid-tile>
-    <mat-grid-tile>Sexta-Feira</mat-grid-tile>
-    <mat-grid-tile>Sábado</mat-grid-tile>
-  </mat-grid-tile-header>
-  <mat-grid-tile *ngFor="let days of calendar" class="mat-elevation-z6" color="basic">
-    <button mat-button fxFill [ngStyle]="{'background-color': days.day == currentDay ? 'rgba(0, 0, 255, 0.3)' : 'none'}"
-      (click)="openDialog(days.day, days.events)" [disabled]="days.isEnabled">
-      <div fxFlex>
-        <strong fxLayoutAlign="end start">
-          {{days.day}}
-        </strong>
-        <div fxLayoutAlign="start end" *ngIf="!days.isEnabled">
-          <mat-icon *ngFor="let not of days.events" [color]="!not.isActive ? 'primary' : 'warn'">event_note</mat-icon>
-        </div>
-      </div>
+<div @fade>
+  <div *ngIf="isLoading" class="spinner-content" fxLayout="row">
+    <mat-spinner class="spinner"></mat-spinner>
+  </div>
+  <div id="month-color" fxLayoutAlign="space-around center">
+    <button mat-button matTooltip="Mês anterior" (click)="beforeMonth()">
+      <mat-icon>navigate_before</mat-icon>
     </button>
-  </mat-grid-tile>
-</mat-grid-list>
+    <h1>{{currentMonthFull}} de {{currentYear}}</h1>
+    <button mat-button matTooltip="Próximo mês" (click)="nextMonth()">
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </div>
+  <mat-grid-list cols="7" [rowHeight]="rowHeight">
+    <mat-grid-tile-header>
+      <mat-grid-tile>Domingo</mat-grid-tile>
+      <mat-grid-tile>Segunda</mat-grid-tile>
+      <mat-grid-tile>Terça</mat-grid-tile>
+      <mat-grid-tile>Quarta</mat-grid-tile>
+      <mat-grid-tile>Quinta</mat-grid-tile>
+      <mat-grid-tile>Sexta</mat-grid-tile>
+      <mat-grid-tile>Sábado</mat-grid-tile>
+    </mat-grid-tile-header>
+    <mat-grid-tile *ngFor="let days of calendar" class="mat-elevation-z6" color="basic">
+      <button mat-button fxFill [ngStyle]="{'background-color': days.day == currentDay ? 'rgba(0, 0, 255, 0.3)' : 'none'}"
+        (click)="openDialog(days.day, days.events)" [disabled]="days.isEnabled">
+        <div fxFlex>
+          <strong fxLayoutAlign="end start">
+            {{days.day}}
+          </strong>
+          <div fxLayoutAlign="start end" *ngIf="!days.isEnabled">
+            <mat-icon *ngFor="let not of days.events" [color]="!not.isActive ? 'primary' : 'warn'">event_note</mat-icon>
+          </div>
+        </div>
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

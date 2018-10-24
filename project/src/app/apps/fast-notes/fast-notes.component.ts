@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { DialogConfirmComponent } from '../apps.component';
 import { FastNotesDialogComponent } from './fast-notes-dialog/fast-notes-dialog.component';
+import { fade } from 'src/app/app.animations';
 
 const COLORS: string[] = ['255, 0, 0', '255, 165, 0', '255, 255, 0',
   '0, 255, 0', '128, 0, 128', '0, 128, 128'];
@@ -12,7 +13,10 @@ const COLORS: string[] = ['255, 0, 0', '255, 165, 0', '255, 255, 0',
 @Component({
   selector: 'app-fast-notes',
   templateUrl: './fast-notes.component.html',
-  styleUrls: ['./fast-notes.component.css']
+  styleUrls: ['./fast-notes.component.css'],
+  animations: [
+    fade
+  ]
 })
 export class FastNotesComponent implements OnInit {
 

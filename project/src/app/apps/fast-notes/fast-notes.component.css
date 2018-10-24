@@ -4,14 +4,6 @@
     background-color: whitesmoke;
 }
 
-.form {
-    width: 100%;
-  }
-  
-  .form-full-width {
-    width: 100%;
-  }
-
   .spinner-content{
     position: absolute;
     background-color: rgba(0, 0, 0, 0.3);

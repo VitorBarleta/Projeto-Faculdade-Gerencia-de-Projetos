@@ -1,34 +1,36 @@
-<div *ngIf="isLoading" class="spinner-content" fxLayout="row">
-  <mat-spinner class="spinner"></mat-spinner>
-</div>
-<div fxLayout="column">
-  <mat-card class="content">
-    <label fxLayoutAlign="center center" fxFill *ngIf="formEditNotes.length == 0">Não há nenhuma anotação ainda.</label>
-    <div class="btn-add">
-      <button mat-fab color="primary" (click)="addNote()">
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
-    <mat-grid-list cols="3">
-      <mat-grid-tile *ngFor="let formNotes of formEditNotes">
-        <mat-card fxFlex="95" (click)="updateNote(formNotes.value)" [ngStyle]="{'background-color': formNotes.get('color') == '' ? 'rgb(255, 255, 255)' : convertColor(formNotes.get('color').value)}">
-          <form [formGroup]="formNotes">
-            <div fxFill>
-              <mat-form-field fxFill>
-                <input matInput placeholder="Título" formControlName="title" readonly/>
-              </mat-form-field>
-              <mat-form-field fxFill>
-                <textarea matInput placeholder="Anotação" rows="5" formControlName="content" readonly></textarea>
-              </mat-form-field>
+<div @fade>
+  <div *ngIf="isLoading" class="spinner-content">
+    <mat-spinner class="spinner"></mat-spinner>
+  </div>
+  <div fxLayout="column">
+    <mat-card class="content">
+      <label fxLayoutAlign="center center" fxFill *ngIf="formEditNotes.length == 0">Não há nenhuma anotação ainda.</label>
+      <div class="btn-add">
+        <button mat-fab color="primary" (click)="addNote()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <mat-grid-list cols="3">
+        <mat-grid-tile *ngFor="let formNotes of formEditNotes">
+          <mat-card fxFlex="95" (click)="updateNote(formNotes.value)" [ngStyle]="{'background-color': formNotes.get('color') == '' ? 'rgb(255, 255, 255)' : convertColor(formNotes.get('color').value)}">
+            <form [formGroup]="formNotes">
+              <div fxFill>
+                <mat-form-field fxFill>
+                  <input matInput placeholder="Título" formControlName="title" readonly />
+                </mat-form-field>
+                <mat-form-field fxFill>
+                  <textarea matInput placeholder="Anotação" rows="5" formControlName="content" readonly></textarea>
+                </mat-form-field>
+              </div>
+            </form>
+            <div fxLayoutAlign="end none">
+              <button mat-icon-button (click)="delete(formNotes.value)">
+                <mat-icon matTooltip="Excluir">delete</mat-icon>
+              </button>
             </div>
-          </form>
-          <div fxLayoutAlign="end none">
-            <button mat-icon-button (click)="delete(formNotes.value)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </div>
-        </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </mat-card>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card>
+  </div>
 </div>

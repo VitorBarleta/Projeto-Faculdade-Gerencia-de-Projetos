@@ -3,11 +3,15 @@ import { MatDialog } from '@angular/material';
 import { NewEventComponent } from './new-event/new-event.component';
 import { CalendarService } from './calendar.service';
 import { ToastrService } from 'ngx-toastr';
+import { fade } from 'src/app/app.animations';
 
 @Component({
     selector: 'app-calendar',
     templateUrl: './calendar.component.html',
-    styleUrls: ['./calendar.component.css']
+    styleUrls: ['./calendar.component.css'],
+    animations: [
+        fade
+    ]
 })
 
 export class CalendarComponent implements OnInit {
