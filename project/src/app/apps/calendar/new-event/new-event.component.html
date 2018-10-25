@@ -1,7 +1,7 @@
 <div class="mat-dialog-title" fxLayout="row" fxLayoutAlign="space-between center">
   <label mat-label>{{fullDate}}</label>
-  <button mat-fab color="warn" mat-dialog-close>
-    <mat-icon>close</mat-icon>
+  <button mat-dialog-close mat-fab color="basic">
+    <mat-icon color="warn">close</mat-icon>
   </button>
 </div>
 <form [formGroup]="formNewEvent" fxFill>
@@ -15,7 +15,7 @@
         <mat-error *ngIf="formNewEvent.get('title').touched && formNewEvent.get('title').hasError('required')">Obrigatório!</mat-error>
       </mat-form-field>
     </div>
-    <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign.gt-xs="space-between center">
       <mat-form-field fxFlex="24">
         <input matInput formControlName="startDay" [value]="formNewEvent.value.startDay" placeholder="Dia de Início"
           readonly>
@@ -74,7 +74,7 @@
             <mat-error *ngIf="formEdit.get('title').touched && formEdit.get('title').hasError('required')">Obrigatório!</mat-error>
           </mat-form-field>
         </div>
-        <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayout.sm-xs="column" fxLayoutAlign="space-between center">
           <mat-form-field fxFlex="24">
             <input matInput  placeholder="Dia de Início" formControlName="startDay" readonly>
           </mat-form-field>
