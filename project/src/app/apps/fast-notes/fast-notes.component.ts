@@ -58,6 +58,7 @@ export class FastNotesComponent implements OnInit {
   }
 
   public get(): void {
+    this.isLoading = true;
     this.service.getNotes().subscribe(response => {
       this.generateFormEdit(response);
     },

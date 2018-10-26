@@ -32,7 +32,7 @@ export class FastNotesDialogComponent implements OnInit {
       id: [],
       title: [],
       content: [],
-      color: []
+      color: ['#ffffff']
     })
   }
 
