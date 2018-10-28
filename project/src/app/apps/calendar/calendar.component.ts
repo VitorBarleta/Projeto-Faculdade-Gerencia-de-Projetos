@@ -167,7 +167,7 @@ export class CalendarComponent implements OnInit {
             this.putEvents(res);
         },
             () => {
-                this.toastr.error('Não foi possível carregar os eventos. Tente novamente.');
+                this.toastr.error('Não foi possível buscar os eventos. Tente novamente.');
                 this.isLoading = false;
             });
     }

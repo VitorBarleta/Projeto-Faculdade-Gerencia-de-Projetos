@@ -64,7 +64,7 @@ export class FastNotesComponent implements OnInit {
     },
       () => {
         this.isLoading = false;
-        this.toastr.error('Não foi possível pegar as anotações. Tente novamente.');
+        this.toastr.error('Não foi possível buscar as anotações. Tente novamente.');
       });
   }
 
