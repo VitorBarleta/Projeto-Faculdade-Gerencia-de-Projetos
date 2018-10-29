@@ -10,9 +10,9 @@
           <mat-icon>add</mat-icon>
         </button>
       </div>
-      <mat-grid-list cols="3">
-        <mat-grid-tile *ngFor="let formNotes of formEditNotes">
-          <mat-card fxFlex="95" (click)="updateNote(formNotes.value)" [ngStyle]="{'background-color': formNotes.get('color') == '' ? 'rgb(255, 255, 255)' : convertColor(formNotes.get('color').value)}">
+      <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+        <div *ngFor="let formNotes of formEditNotes" style="margin-top: 10px" fxFlex.xs="100" fxFlex.sm="0 1 calc(48%)" fxFlex.md="0 1 calc(33%)" fxFlex.lg="0 1 calc(33%)">
+          <mat-card fxFlex="100" [ngStyle]="{'background-color': formNotes.get('color') == '' ? 'rgb(255, 255, 255)' : convertColor(formNotes.get('color').value)}">
             <form [formGroup]="formNotes">
               <div fxFill>
                 <mat-form-field fxFill>
@@ -24,13 +24,16 @@
               </div>
             </form>
             <div fxLayoutAlign="end none">
+              <button mat-icon-button (click)="updateNote(formNotes.value)">
+                <mat-icon matTooltip="Editar">edit</mat-icon>
+              </button>
               <button mat-icon-button (click)="delete(formNotes.value)">
                 <mat-icon matTooltip="Excluir">delete</mat-icon>
               </button>
             </div>
           </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
+        </div>
+      </div>
     </mat-card>
   </div>
 </div>

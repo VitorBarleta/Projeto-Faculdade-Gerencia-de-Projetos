@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { CalendarService } from '../calendar.service';
-import { DialogConfirmComponent } from '../../apps.component';
+import { DialogConfirmComponent } from '../../dialog/dialog.component';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

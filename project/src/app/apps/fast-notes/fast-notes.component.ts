@@ -3,7 +3,7 @@ import { FastNotesService } from './fast-notes.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { DialogConfirmComponent } from '../apps.component';
+import { DialogConfirmComponent } from '../dialog/dialog.component';
 import { FastNotesDialogComponent } from './fast-notes-dialog/fast-notes-dialog.component';
 import { fade } from 'src/app/app.animations';
 

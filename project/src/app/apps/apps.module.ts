@@ -11,7 +11,8 @@ import {
 
 import 'hammerjs';
 import { Routes, RouterModule } from '@angular/router';
-import { AppsComponent, DialogConfirmComponent } from './apps.component';
+import { AppsComponent } from './apps.component';
+import { DialogConfirmComponent } from './dialog/dialog.component';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { FastNotesComponent } from './fast-notes/fast-notes.component';

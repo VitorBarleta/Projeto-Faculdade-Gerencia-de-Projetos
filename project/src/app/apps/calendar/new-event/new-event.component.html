@@ -76,14 +76,13 @@
         </div>
         <div fxLayout="row" fxLayout.sm-xs="column" fxLayoutAlign="space-between center">
           <mat-form-field fxFlex="24">
-            <input matInput  placeholder="Dia de Início" formControlName="startDay" readonly>
+            <input matInput placeholder="Dia de Início" formControlName="startDay" readonly>
           </mat-form-field>
           <mat-form-field fxFlex="24">
             <input matInput type="time" formControlName="startHour" placeholder="Hora de Início">
           </mat-form-field>
           <mat-form-field fxFlex="24">
-            <input matInput [matDatepicker]="endDay" formControlName="endDay" placeholder="Dia de Término"
-              readonly>
+            <input matInput [matDatepicker]="endDay" formControlName="endDay" placeholder="Dia de Término" readonly>
             <mat-datepicker-toggle matSuffix [for]="endDay"></mat-datepicker-toggle>
             <mat-datepicker #endDay color="primary"></mat-datepicker>
           </mat-form-field>
@@ -106,10 +105,10 @@
           <mat-slide-toggle color="warn" formControlName="isActive">Cancelar evento.</mat-slide-toggle>
         </div>
       </form>
-      <div class="mat-card-event" mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxFill>
-        <button mat-raised-button color="warn" (click)="deleteEvent(formEdit.value)">Excluir</button>
-        <button mat-raised-button color="primary" [disabled]="!formEdit.valid" (click)="updateEvent(formEdit.value)">Salvar</button>
-      </div>
+        <div fxLayout="row" fxLayoutAlign="end center">
+          <button mat-raised-button color="warn" (click)="deleteEvent(formEdit.value)">Excluir</button>
+          <button mat-raised-button color="primary" [disabled]="!formEdit.valid" (click)="updateEvent(formEdit.value)">Salvar</button>
+        </div>
     </mat-expansion-panel>
   </mat-accordion>
 </div>

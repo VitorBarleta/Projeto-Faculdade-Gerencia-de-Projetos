@@ -12,8 +12,6 @@ export class LoginComponent implements OnInit {
 
   public isHide = false;
 
-  public Action: string = 'Entrar';
-
   public passwordOption: string = 'password';
 
   public passwordIcon: string = 'visibility_off';
