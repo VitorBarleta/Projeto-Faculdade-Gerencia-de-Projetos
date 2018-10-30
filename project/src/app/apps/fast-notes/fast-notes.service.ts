@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class FastNotesService {
 
-  private _baseUrl: string = 'http://localhost:3000/notes';
+  private _baseUrl: string = 'http://192.168.100.4:3000/notes';
 
   constructor(private _http: HttpClient,
     private toastr: ToastrService) { }

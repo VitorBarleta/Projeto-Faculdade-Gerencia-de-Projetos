@@ -12,3 +12,14 @@
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
 }
+
+@media only screen and (max-width: 599px) {
+    .event-info {
+        font-size: 7pt;
+        width: 25%;
+    }
+
+    .material-icons{
+        font-size: 7pt;
+    }
+}

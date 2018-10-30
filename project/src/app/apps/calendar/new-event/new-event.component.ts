@@ -21,6 +21,8 @@ export class NewEventComponent implements OnInit {
   public panelOpenState = false;
 
   public savedEvents: Array<any> = [];
+  
+  public smallScreen: boolean = window.innerWidth < 600 ? true : false;
 
   public fullDate = `${this.data.day} de ${this.data.monthFull} de ${this.data.year}`;
 

@@ -18,6 +18,8 @@ export class CalendarComponent implements OnInit {
 
     public isLoading = true;
 
+    public smallScreen: boolean = window.innerWidth < 600 ? true : false;
+
     public daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     public monthConfig = [
         { month: 'Janeiro', color: '255, 255, 255' },
@@ -53,7 +55,7 @@ export class CalendarComponent implements OnInit {
 
     openDialog(day: string, event: Array<any>): void {
         const dialogRef = this.dialog.open(NewEventComponent, {
-            maxHeight: '610px',
+            maxHeight: '530px',
             width: '900px',
             data: {
                 year: this.currentYear,
@@ -79,7 +81,7 @@ export class CalendarComponent implements OnInit {
         this.getMonthDays();
         window.addEventListener('resize', () => {
             this.rowHeight = `${window.innerHeight / 9.1}px`;
-        })
+        });
     }
 
     public calculateLeapYear(year: number) {

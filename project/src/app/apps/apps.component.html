@@ -5,7 +5,7 @@
         <img id="logo" src="../../assets/Logo/novoLogo_OrganizYou.png" alt="OrganizeYou" title="Fique Organizado!" width="50px"
           height="50px" class="menu-item" />
       </a>
-      <span class="menu-item">OrganizeYou</span>
+      <span *ngIf="!calculateScreenSize()" class="menu-item">OrganizeYou</span>
     </div>
     <div>
       <div>

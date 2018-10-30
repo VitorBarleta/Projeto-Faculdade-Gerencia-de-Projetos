@@ -12,4 +12,10 @@ export class AppsComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  calculateScreenSize(): boolean {
+    if(window.innerWidth < 600)
+      return true;
+    return false;
+  }
 }

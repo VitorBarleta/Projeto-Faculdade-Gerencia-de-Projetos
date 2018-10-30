@@ -4,7 +4,7 @@
 <div @fade>
   <div fxLayout="column">
     <mat-card class="content">
-      <label fxLayoutAlign="center center" fxFill *ngIf="formEditNotes.length == 0">Não há nenhuma anotação ainda.</label>
+      <label fxLayoutAlign="center center" fxLayoutAlign.lt-sm="start center" *ngIf="formEditNotes.length == 0">Não há nenhuma anotação ainda.</label>
       <div class="btn-add">
         <button mat-fab color="primary" (click)="addNote()">
           <mat-icon>add</mat-icon>
