@@ -22,13 +22,13 @@
       <mat-grid-tile>Sáb<span *ngIf="!smallScreen">ado</span></mat-grid-tile>
     </mat-grid-tile-header>
     <mat-grid-tile *ngFor="let days of calendar" class="mat-elevation-z6" color="basic">
-      <button mat-button fxFill [ngStyle]="{'background-color': days.day == currentDay ? 'rgba(0, 0, 255, 0.3)' : 'none'}"
-        (click)="openDialog(days.day, days.events)" [disabled]="days.isEnabled">
+      <button mat-button fxFill [ngStyle]="{'background-color': days.day == currentDay && days.isEnabled ? 'rgba(0, 0, 255, 0.3)' : 'none'}"
+        (click)="openDialog(days.day, days.events)" [disabled]="!days.isEnabled">
         <div>
           <strong fxLayoutAlign="end start" class="event-info">
             {{days.day}}
           </strong>
-          <div fxLayoutAlign="start end" *ngIf="!days.isEnabled" class="event-info">
+          <div fxLayoutAlign="start end" *ngIf="days.isEnabled" class="event-info">
             <mat-icon *ngFor="let canceledInfo of days.events" [color]="!canceledInfo.isActive ? 'primary' : 'warn'">event_note</mat-icon>
           </div>
         </div>

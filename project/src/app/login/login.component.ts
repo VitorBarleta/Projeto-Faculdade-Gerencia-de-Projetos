@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
+import { User } from './user';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +13,17 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
 
+  public user: User = new User();
+
   public isHide = false;
 
   public passwordOption: string = 'password';
 
   public passwordIcon: string = 'visibility_off';
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
+    private auth: AuthService) { }
 
   ngOnInit() {
     this.generateFormLogin();
@@ -26,7 +33,12 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       login: ['', [Validators.email, Validators.required, Validators.minLength(6)]],
       password: ['', [Validators.required, Validators.minLength(8)]]
-    })
+    });
+
+    this.loginForm.valueChanges.subscribe(value => {
+      this.user.user = value.login;
+      this.user.password = value.password;
+    }); 
   }
 
   public visibilityPassword(): void {
@@ -47,4 +59,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+    public LogOn(): void {
+      this.auth.doLogin(this.user);
+    }
 }

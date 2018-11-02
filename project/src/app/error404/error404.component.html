@@ -1,16 +1,14 @@
 <div fxLayoutAlign="center center" fxFill class="fillBackground">
-  <mat-card color="primary">
-    <mat-card-header>
-      <mat-card-title fxLayoutAlign="center">
+  <mat-card fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="70" fxFlex.lg="50" fxFlex.xl="40">
+      <div fxLayoutAlign="center">
         <h1>Ooooops!</h1>
-      </mat-card-title>
-      <mat-card-subtitle fxLayoutAlign="center">
-        <h2>Não conseguimos encontrar a página {{ currentUrl }}. Tente novamente.</h2>
-      </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content fxLayoutAlign="center">
+      </div>
+      <div fxLayoutAlign="center">
+        <label>Não conseguimos encontrar a página {{ currentUrl }}. Tente novamente.</label>
+      </div>
+    <div fxLayoutAlign="center">
       <h3>Status do erro: 404</h3>
-    </mat-card-content>
+    </div>
     <mat-card-actions fxLayoutAlign="center">
       <button mat-raised-button color="primary" routerLink="/login">Voltar ao Login</button>
     </mat-card-actions>

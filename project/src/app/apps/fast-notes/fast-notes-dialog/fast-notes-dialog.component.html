@@ -4,7 +4,7 @@
       <input matInput placeholder="Título" formControlName="title" />
     </mat-form-field>
     <mat-form-field fxFill>
-      <textarea matInput placeholder="Anotação" rows="5" formControlName="content"></textarea>
+      <textarea matInput placeholder="Anotação" [matTextareaAutosize]="true" formControlName="content"></textarea>
     </mat-form-field>
   </div>
   <div>

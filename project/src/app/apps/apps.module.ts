@@ -23,13 +23,15 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { FastNotesDialogComponent } from './fast-notes/fast-notes-dialog/fast-notes-dialog.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 const route: Routes = [
   {
     path: 'apps', component: AppsComponent, children: [
-      { path: 'home', component: HomeComponent },
-      { path: 'fast-notes', component: FastNotesComponent },
-      { path: 'calendar', component: CalendarComponent }
+      { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+      { path: 'fast-notes', component: FastNotesComponent, canActivate: [AuthGuard] },
+      { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard] },
+      { path: '', redirectTo: 'home', pathMatch: 'full'}
     ]
   }
 ];
@@ -72,7 +74,8 @@ const route: Routes = [
   exports: [
   ],
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
+    AuthGuard
   ],
   bootstrap: [],
   entryComponents: [NewEventComponent, DialogConfirmComponent, FastNotesDialogComponent]

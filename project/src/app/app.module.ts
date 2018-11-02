@@ -15,6 +15,8 @@ import { Error404Component } from './error404/error404.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from './login/auth.service';
+import { AuthGuard } from './guards/auth.guard';
 
 const route: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -44,7 +46,7 @@ const route: Routes = [
   ],
   exports: [
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

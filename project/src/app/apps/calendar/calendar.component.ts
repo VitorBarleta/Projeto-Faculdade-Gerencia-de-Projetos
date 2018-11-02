@@ -152,15 +152,15 @@ export class CalendarComponent implements OnInit {
     public isDisabled(day: number): boolean {
         if (day === 1 && this.indexDay < 1) {
             this.indexDay++;
-            return false;
+            return true;
         } else if (day === 1 && this.indexDay === 1) {
             this.indexDay++;
-            return true;
-        }
-        else if (day > 1 && this.indexDay === 1) {
             return false;
         }
-        return true;
+        else if (day > 1 && this.indexDay === 1) {
+            return true;
+        }
+        return false;
     }
 
     private getAllEvents(): void {

@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CalendarService {
 
-  private _baseUrl = 'http://192.168.100.4:3000/events/';
+  private _baseUrl = 'http://localhost:3000/events/';ipconfig
 
   constructor(private _http: HttpClient,
     private toastr: ToastrService) { }
