@@ -75,6 +75,7 @@ export class CalendarComponent implements OnInit {
     }
 
     ngOnInit() {
+        document.title = 'OrganizYou | Calendário';
         this.getAllEvents();
         this.currentMonth = new Date().getMonth();
         this.currentYear = new Date().getFullYear();

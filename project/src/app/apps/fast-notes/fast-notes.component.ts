@@ -29,6 +29,7 @@ export class FastNotesComponent implements OnInit {
     private toastr: ToastrService) { }
 
   ngOnInit() {
+    document.title = 'OrganizYou | Anotações';
     this.get();
   }
   

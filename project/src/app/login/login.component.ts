@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
     private auth: AuthService) { }
 
   ngOnInit() {
+    document.title = 'OrganizYou | Login';
     this.generateFormLogin();
   }
 
