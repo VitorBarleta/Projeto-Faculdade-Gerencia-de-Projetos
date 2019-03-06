@@ -1,5 +1,5 @@
 <div id="main-login" fxFill fxLayoutAlign="center center">
-  <div fxFlex.xs="100" fxFlex.sm="60" fxFlex="40">
+  <div fxFlex.xs="100" fxFlex.sm="60" fxFlex.md="40" fxFlex.xl="30" fxFlex="25">
     <div fxFill fxLayout="column">
       <mat-card>
         <div class="mat-dialog-title" fxLayout="row" fxLayoutAlign="start center">
@@ -12,24 +12,25 @@
           </div>
           <div fxLayout="row">
             <mat-form-field fxFill>
-              <input matInput type="email" formControlName="login" placeholder="Login" required>
-              <mat-error *ngIf="loginForm.get('login').touched && loginForm.get('login').hasError('minlength')">
-                E-mail muito curto.</mat-error>
-              <mat-error *ngIf="loginForm.get('login').touched && loginForm.get('login').hasError('email') || loginForm.get('login').hasError('required')">
-                Informe um E-mail válido.
+              <input matInput type="email" formControlName="user" placeholder="Login" required>
+              <mat-error *ngFor="let validation of validationTypes.Email">
+                <span *ngIf="loginForm.get('user').touched && loginForm.get('user').hasError(validation.type)">
+                  {{validation.message}}
+                </span>
               </mat-error>
             </mat-form-field>
           </div>
           <div fxLayout="row">
             <mat-form-field fxFill>
-              <input maxlength="63" matInput [type]="passwordOption" formControlName="password" placeholder="Senha" required>
-              <button matSuffix mat-icon-button (click)="visibilityPassword()">
-                <mat-icon>{{ passwordIcon }}</mat-icon>
+              <input maxlength="63" matInput [type]="isDisplay ? 'text' : 'password'" formControlName="password" placeholder="Senha" required>
+              <button matSuffix [matTooltip]="isDisplay ? 'Esconder senha' : 'Mostrar senha'" mat-icon-button (click)="isDisplay ? isDisplay = false : isDisplay = true">
+                <mat-icon>{{ !isDisplay ? 'visibility_off' : 'visibility' }}</mat-icon>
               </button>
-              <mat-error *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError('required')">Informe
-                uma Senha válida.</mat-error>
-              <mat-error *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError('minlength')">A
-                senha deve ter no mínimo 8 caracteres.</mat-error>
+              <mat-error *ngFor="let validation of validationTypes.Password">
+                <span *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError(validation.type) ">
+                  {{validation.message}}
+                </span>
+              </mat-error>
             </mat-form-field>
           </div>
           <div fxLayout="row">
@@ -39,7 +40,7 @@
             <p mat-label>Não tem uma conta? <a mat-label href="#">Crie uma.</a></p>
           </div>
           <div mat-card-actions fxLayoutAlign="end center">
-            <button mat-raised-button color="primary" [disabled]="loginForm.invalid  && (loginForm.dirty || loginForm.touched)" (click)="LogOn()">Entrar</button>
+            <button mat-raised-button color="primary" [disabled]="loginForm.invalid  && (loginForm.dirty || loginForm.touched)" (click)="auth.doLogin(loginForm.value);">Entrar</button>
           </div>
         </form>
       </mat-card>

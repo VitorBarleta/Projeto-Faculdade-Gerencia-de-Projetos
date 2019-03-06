@@ -12,10 +12,9 @@ export class AuthService {
   constructor(private router: Router) { }
 
   doLogin(user: User): any {
-
     if(user.user && user.password){
       this.userAuthenticated = true;
-      this.router.navigate(['apps/home']);
+      this.router.navigate(['home']);
     }
   }
 

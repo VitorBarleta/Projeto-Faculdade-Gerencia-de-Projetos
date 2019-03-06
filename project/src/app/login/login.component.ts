@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { User } from './user';
-import { AsyncPipe } from '@angular/common';
+import { ValidationTypes } from './validation-types';
 
 @Component({
   selector: 'app-login',
@@ -13,18 +12,11 @@ import { AsyncPipe } from '@angular/common';
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
+  public isDisplay = false;
 
-  public user: User = new User();
+  public validationTypes: any = ValidationTypes;
 
-  public isHide = false;
-
-  public passwordOption: string = 'password';
-
-  public passwordIcon: string = 'visibility_off';
-
-  constructor(private formBuilder: FormBuilder,
-    private router: Router,
-    private auth: AuthService) { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
     document.title = 'OrganizYou | Login';
@@ -32,36 +24,9 @@ export class LoginComponent implements OnInit {
   }
 
   public generateFormLogin(): void {
-    this.loginForm = this.formBuilder.group({
-      login: ['', [Validators.email, Validators.required, Validators.minLength(6)]],
+    this.loginForm = new FormBuilder().group({
+      user: ['', [Validators.email, Validators.required]],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
-
-    this.loginForm.valueChanges.subscribe(value => {
-      this.user.user = value.login;
-      this.user.password = value.password;
-    });
-  }
-
-  public visibilityPassword(): void {
-    if (!this.isHide)
-      this.isHide = true;
-
-    else
-      this.isHide = false;
-
-    if (this.isHide) {
-      this.passwordIcon = 'visibility';
-      this.passwordOption = 'text';
-    }
-
-    else {
-      this.passwordIcon = 'visibility_off';
-      this.passwordOption = 'password';
-    }
-  }
-
-  public LogOn(): void {
-    this.auth.doLogin(this.user);
   }
 }

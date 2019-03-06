@@ -19,7 +19,7 @@ import { FastNotesComponent } from './fast-notes/fast-notes.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NewEventComponent } from './calendar/new-event/new-event.component';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { FastNotesDialogComponent } from './fast-notes/fast-notes-dialog/fast-notes-dialog.component';
@@ -27,11 +27,11 @@ import { AuthGuard } from '../guards/auth.guard';
 
 const route: Routes = [
   {
-    path: 'apps', component: AppsComponent, children: [
+    path: '', component: AppsComponent, children: [
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'fast-notes', component: FastNotesComponent, canActivate: [AuthGuard] },
       { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard] },
-      { path: '', redirectTo: 'home', pathMatch: 'full'}
+      { path: '', redirectTo: 'home', pathMatch: 'full' }
     ]
   }
 ];
@@ -71,12 +71,12 @@ const route: Routes = [
     MatSlideToggleModule,
     HttpClientModule,
     MatTableModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({ preventDuplicates: true })
   ],
   exports: [
   ],
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
     AuthGuard
   ],
   bootstrap: [],
