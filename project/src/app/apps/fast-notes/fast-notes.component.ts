@@ -3,9 +3,9 @@ import { FastNotesService } from './fast-notes.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { DialogConfirmComponent } from '../dialog/dialog.component';
 import { FastNotesDialogComponent } from './fast-notes-dialog/fast-notes-dialog.component';
 import { fade } from 'src/app/app.animations';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 const COLORS: string[] = ['255, 0, 0', '255, 165, 0', '255, 255, 0',
   '0, 255, 0', '128, 0, 128', '0, 128, 128'];
@@ -82,7 +82,7 @@ export class FastNotesComponent implements OnInit {
   }
 
   public delete(notes): void {
-    const dialogRef = this.dialog.open(DialogConfirmComponent, {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '400px',
       data: {
         title: notes.title,

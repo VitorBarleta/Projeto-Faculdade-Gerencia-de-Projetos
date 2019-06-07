@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -12,8 +12,7 @@ import {
 import 'hammerjs';
 import { Routes, RouterModule } from '@angular/router';
 import { AppsComponent } from './apps.component';
-import { DialogConfirmComponent } from './dialog/dialog.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { FastNotesComponent } from './fast-notes/fast-notes.component';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -24,6 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { FastNotesDialogComponent } from './fast-notes/fast-notes-dialog/fast-notes-dialog.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import localePt from '@angular/common/locales/pt';
 
 const route: Routes = [
   {
@@ -36,6 +37,8 @@ const route: Routes = [
   }
 ];
 
+registerLocaleData(localePt);
+
 @NgModule({
   declarations: [
     AppsComponent,
@@ -43,7 +46,7 @@ const route: Routes = [
     FastNotesComponent,
     CalendarComponent,
     NewEventComponent,
-    DialogConfirmComponent,
+    ConfirmDialogComponent,
     FastNotesDialogComponent
   ],
   imports: [
@@ -77,9 +80,10 @@ const route: Routes = [
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
     AuthGuard
   ],
   bootstrap: [],
-  entryComponents: [NewEventComponent, DialogConfirmComponent, FastNotesDialogComponent]
+  entryComponents: [NewEventComponent, ConfirmDialogComponent, FastNotesDialogComponent]
 })
 export class AppsModule { }

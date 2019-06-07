@@ -1,17 +1,26 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ErrorHandler } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, Subscription } from 'rxjs';
+import { IEvents } from 'src/app/core/IEvents';
+import { reject } from 'q';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private _httpClient: HttpClient) { }
 
-  url: string = 'http://localhost:3000/event';
+  url: string = 'http://localhost:3000/events';
 
-  get(): Observable<any> {
-    return this.http.get(this.url);
+  public async GetAllEventsAsync(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._httpClient.get(this.url)
+        .subscribe((response: Array<IEvents>) => {
+          return resolve(response);
+        }, reject);
+    }).catch((error: HttpErrorResponse) => {
+      return reject(error);
+    });
   }
 }

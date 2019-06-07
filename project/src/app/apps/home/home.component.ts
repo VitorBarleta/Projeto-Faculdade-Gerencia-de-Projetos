@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogTitle, MatTableDataSource, Sort } from '@angular/material';
 import { HomeService } from './home.service';
 import { fade } from 'src/app/app.animations';
-import { ToastrService } from 'ngx-toastr';
+import { ToastrService, ActiveToast } from 'ngx-toastr';
+import { isNull } from '@angular/compiler/src/output/output_ast';
+import { HttpErrorResponse } from '@angular/common/http';
+import { IEvents } from 'src/app/core/IEvents';
 
 @Component({
   selector: 'app-home',
@@ -13,18 +16,20 @@ import { ToastrService } from 'ngx-toastr';
   ]
 })
 export class HomeComponent implements OnInit {
-  public events: any;
+  public events: Array<IEvents>;
   public isLoading: boolean = false;
-  public displayedColumns: string[] = ['titulo', 'data'];
+  public displayedColumns: string[] = ['titulo', 'date'];
 
-  public eventsToShow: any;
+  public eventsToShow: IEvents;
 
-  public currentDay = new Date().getDate();
-  public currentMonth = new Date().getMonth();
-  public currentYear = new Date().getFullYear();
+  public currentDay: number = new Date().getDate();
+  public currentMonth: number = new Date().getMonth();
+  public currentYear: number = new Date().getFullYear();
 
-  constructor(private service: HomeService,
-    private toastr: ToastrService) {
+  constructor(
+    private _service: HomeService,
+    private _toastr: ToastrService
+  ) {
   }
 
   ngOnInit() {
@@ -34,7 +39,7 @@ export class HomeComponent implements OnInit {
 
   public showDetails(event: any): void {
     this.eventsToShow = event;
-  } 
+  }
 
   public mobileList(): boolean {
     if (window.innerWidth < 960)
@@ -44,34 +49,13 @@ export class HomeComponent implements OnInit {
 
   private getAll(): void {
     this.isLoading = true;
-    this.service.get().subscribe(response => {
-      response.forEach(event => {
-        if (event.endDay != '')
-          event.endDay = new Date(event.endDay).toLocaleDateString();
-      });
+    this._service.GetAllEventsAsync().then((response: Array<IEvents>) => {
       this.isLoading = false;
       this.events = response;
-    }, () => {
+    }).catch((error: HttpErrorResponse) => {
       this.isLoading = false;
-      this.toastr.error('Não foi possível buscar os dados. Tente novamente.');
+      this._toastr.error(error.statusText, 'Não foi possível carregar os eventos.');
     });
   }
-
-  sortData(sort: Sort) {
-    const data = this.events.slice();
-
-    this.events = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'title': return compare(a.title, b.title, isAsc);
-        case 'date': return compare(a.startDay, b.startDay, isAsc);
-        default: return 0;
-      }
-    });
-  }
-}
-
-function compare(a: number | string, b: number | string, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
 

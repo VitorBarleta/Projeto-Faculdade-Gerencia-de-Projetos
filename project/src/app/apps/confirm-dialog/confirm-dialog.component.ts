@@ -3,13 +3,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.css']
+  templateUrl: './confirm-dialog.component.html',
+  styleUrls: ['./confirm-dialog.component.css']
 })
 
-export class DialogConfirmComponent {
+export class ConfirmDialogComponent {
 
-  constructor(private dialogRef: MatDialogRef<DialogConfirmComponent>,
+  constructor(private dialogRef: MatDialogRef<ConfirmDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data) { }
 
   public closeConfirm(value: boolean): void {
