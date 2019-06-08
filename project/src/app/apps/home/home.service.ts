@@ -1,6 +1,5 @@
-import { Injectable, ErrorHandler } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, Subscription } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { IEvents } from 'src/app/core/IEvents';
 import { reject } from 'q';
 
@@ -11,11 +10,11 @@ export class HomeService {
 
   constructor(private _httpClient: HttpClient) { }
 
-  url: string = 'http://localhost:3000/events';
+  private _url: string = 'http://localhost:3000/events';
 
   public async GetAllEventsAsync(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.get(this.url)
+      this._httpClient.get(this._url)
         .subscribe((response: Array<IEvents>) => {
           return resolve(response);
         }, reject);

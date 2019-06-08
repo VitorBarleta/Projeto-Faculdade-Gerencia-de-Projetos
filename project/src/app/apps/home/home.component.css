@@ -2,10 +2,6 @@
   margin: 20px;
 }
 
-span {
-  font-weight: bold;
-}
-
 .spinner {
   position: fixed;
   top: 50%;

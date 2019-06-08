@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID, ChangeDetectorRef } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   MatButtonModule, MatInputModule, MatToolbarModule, MatIconModule, MatProgressSpinnerModule,
   MatCardModule, MatTabsModule, MatGridListModule, MatDialogModule, MatSelectModule, MatDatepickerModule,
-  MatNativeDateModule, MAT_DATE_LOCALE, MatExpansionModule, MatSlideToggleModule, MatTooltipModule, MatTableModule, MatSortModule
+  MatNativeDateModule, MAT_DATE_LOCALE, MatExpansionModule, MatSlideToggleModule, MatTooltipModule, MatTableModule, MatSortModule, MatPaginatorModule, MatPaginator
 } from '@angular/material';
 
 import 'hammerjs';
@@ -73,6 +73,7 @@ registerLocaleData(localePt);
     MatProgressSpinnerModule,
     MatSlideToggleModule,
     HttpClientModule,
+    MatPaginatorModule,
     MatTableModule,
     ToastrModule.forRoot({ preventDuplicates: true })
   ],

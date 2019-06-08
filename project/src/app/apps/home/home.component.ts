@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogTitle, MatTableDataSource, Sort } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HomeService } from './home.service';
 import { fade } from 'src/app/app.animations';
-import { ToastrService, ActiveToast } from 'ngx-toastr';
-import { isNull } from '@angular/compiler/src/output/output_ast';
+import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IEvents } from 'src/app/core/IEvents';
 
@@ -15,6 +13,7 @@ import { IEvents } from 'src/app/core/IEvents';
     fade
   ]
 })
+
 export class HomeComponent implements OnInit {
   public events: Array<IEvents>;
   public isLoading: boolean = false;

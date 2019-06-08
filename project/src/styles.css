@@ -259,3 +259,7 @@ button.toast-close-button {
 ::-webkit-scrollbar-corner{
   display: none;
 }
+
+html {
+  font-family: sans-serif;
+}
