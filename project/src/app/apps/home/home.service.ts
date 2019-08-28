@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { IEvents } from 'src/app/core/IEvents';
+import { IEvent } from 'src/app/core/IEvent';
 import { reject } from 'q';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class HomeService {
   public async GetAllEventsAsync(): Promise<any> {
     return new Promise((resolve, reject) => {
       this._httpClient.get(this._url)
-        .subscribe((response: Array<IEvents>) => {
+        .subscribe((response: Array<IEvent>) => {
           return resolve(response);
         }, reject);
     }).catch((error: HttpErrorResponse) => {

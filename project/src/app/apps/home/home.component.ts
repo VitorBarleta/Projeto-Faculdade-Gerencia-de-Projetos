@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Inject } from '@angular/core';
 import { HomeService } from './home.service';
 import { fade } from 'src/app/app.animations';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
-import { IEvents } from 'src/app/core/IEvents';
+import { IEvent } from 'src/app/core/IEvent';
+import { CalendarEvent } from '../calendar/calendar.event-status';
+import { MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-home',
@@ -14,18 +16,24 @@ import { IEvents } from 'src/app/core/IEvents';
   ]
 })
 
-export class HomeComponent implements OnInit {
-  public events: Array<IEvents>;
+export class HomeComponent implements OnInit, AfterViewInit {
+  public events: Array<IEvent>;
   public isLoading: boolean = false;
   public displayedColumns: string[] = ['titulo', 'date'];
 
-  public eventsToShow: IEvents;
+  public eventStatus: Array<any> = CalendarEvent.status;
+
+  public eventsToShow: IEvent;
 
   public currentDay: number = new Date().getDate();
   public currentMonth: number = new Date().getMonth();
   public currentYear: number = new Date().getFullYear();
 
+
+  public resultsLength: number = 50;
+
   constructor(
+    @ViewChild(MatPaginator, {static: false}) public paginator: MatPaginator,
     private _service: HomeService,
     private _toastr: ToastrService
   ) {
@@ -36,7 +44,11 @@ export class HomeComponent implements OnInit {
     document.title = 'OrganizYou | Início';
   }
 
-  public showDetails(event: any): void {
+  ngAfterViewInit() {
+    console.log(this.paginator.pageSize);
+  }
+
+  public showDetails(event: IEvent): void {
     this.eventsToShow = event;
   }
 
@@ -48,7 +60,7 @@ export class HomeComponent implements OnInit {
 
   private getAll(): void {
     this.isLoading = true;
-    this._service.GetAllEventsAsync().then((response: Array<IEvents>) => {
+    this._service.GetAllEventsAsync().then((response: Array<IEvent>) => {
       this.isLoading = false;
       this.events = response;
     }).catch((error: HttpErrorResponse) => {
@@ -57,4 +69,3 @@ export class HomeComponent implements OnInit {
     });
   }
 }
-

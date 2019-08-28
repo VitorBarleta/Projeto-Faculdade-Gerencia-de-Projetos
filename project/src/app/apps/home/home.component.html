@@ -6,9 +6,9 @@
     <mat-label>Você ainda não possui eventos salvos.</mat-label>
   </div>
 </div>
-<div class="mat-card-event" @fade *ngIf="!mobileList() && events" fxLayoutGap="20px">
-  <div fxLayout="column" fxFlex="40">
-    <table mat-table [dataSource]="events" class="mat-elevation-z8" matSort>
+<div class="mat-card-event" @fade fxFlex *ngIf="!mobileList() && events" fxLayoutGap="20px">
+  <div fxLayout="column" fxFlex="40" class="mat-elevation-z8">
+    <table mat-table [dataSource]="events" matSort>
       <ng-container matColumnDef="titulo">
         <th mat-header-cell *matHeaderCellDef> Título </th>
         <td mat-cell *matCellDef="let element"> {{element.title}} </td>
@@ -88,8 +88,18 @@
           </div>
         </div>
       </div>
-      <div fxFlex="100" class="event-content mat-elevation-z8" style="margin-top: 15px;">
-        Legenda
+      <div fxFlex="100" fxLayout="column" class="event-content mat-elevation-z8" style="margin-top: 15px;">
+        <div>
+          Legenda
+        </div>
+        <div fxLayout="column">
+          <div fxLayout="row" *ngFor="let status of eventStatus">
+            <mat-icon [color]="status.type.color">
+              event
+            </mat-icon>
+            <label>{{status.type.alias}}</label>
+          </div>
+        </div>
       </div>
     </div>
   </div>
