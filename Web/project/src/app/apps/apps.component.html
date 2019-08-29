@@ -1,0 +1,19 @@
+<mat-toolbar class="mat-elevation-z6" color="basic" style="background-color: rgba(0, 0, 255, 0.1)">
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-around center">
+    <div fxFlex="15" fxLayoutAlign="space-between center">
+      <a routerLink="/apps/home">
+        <img id="logo" src="../../assets/Logo/novoLogo_OrganizYou.png" alt="OrganizeYou" title="Fique Organizado!" width="50px"
+          height="50px" class="menu-item" />
+      </a>
+      <span fxHide.lt-md class="menu-item">OrganizeYou</span>
+    </div>
+    <div>
+      <div>
+        <a mat-button color="basic" routerLink="/home">Home</a>
+        <a mat-button color="basic" routerLink="/fast-notes">Notas Rápidas</a>
+        <a mat-button color="basic" routerLink="/calendar">Calendário</a>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>

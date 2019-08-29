@@ -1,0 +1,14 @@
+D:\dev\git\OrganizYou\Projeto-Faculdade-Gerencia-de-Projetos\Service\Service.API\bin\Debug\netcoreapp2.2\Service.API.deps.json
+D:\dev\git\OrganizYou\Projeto-Faculdade-Gerencia-de-Projetos\Service\Service.API\bin\Debug\netcoreapp2.2\Service.API.runtimeconfig.json
+D:\dev\git\OrganizYou\Projeto-Faculdade-Gerencia-de-Projetos\Service\Service.API\bin\Debug\netcoreapp2.2\Service.API.runtimeconfig.dev.json
+D:\dev\git\OrganizYou\Projeto-Faculdade-Gerencia-de-Projetos\Service\Service.API\bin\Debug\netcoreapp2.2\Service.API.dll
+D:\dev\git\OrganizYou\Projeto-Faculdade-Gerencia-de-Projetos\Service\Service.API\bin\Debug\netcoreapp2.2\Service.API.pdb
+D:\dev\git\OrganizYou\Projeto-Faculdade-Gerencia-de-Projetos\Service\Service.API\obj\Debug\netcoreapp2.2\Service.API.csprojAssemblyReference.cache
+D:\dev\git\OrganizYou\Projeto-Faculdade-Gerencia-de-Projetos\Service\Service.API\obj\Debug\netcoreapp2.2\Service.API.csproj.CoreCompileInputs.cache
+D:\dev\git\OrganizYou\Projeto-Faculdade-Gerencia-de-Projetos\Service\Service.API\obj\Debug\netcoreapp2.2\Service.API.RazorAssemblyInfo.cache
+D:\dev\git\OrganizYou\Projeto-Faculdade-Gerencia-de-Projetos\Service\Service.API\obj\Debug\netcoreapp2.2\Service.API.RazorAssemblyInfo.cs
+D:\dev\git\OrganizYou\Projeto-Faculdade-Gerencia-de-Projetos\Service\Service.API\obj\Debug\netcoreapp2.2\Service.API.AssemblyInfoInputs.cache
+D:\dev\git\OrganizYou\Projeto-Faculdade-Gerencia-de-Projetos\Service\Service.API\obj\Debug\netcoreapp2.2\Service.API.AssemblyInfo.cs
+D:\dev\git\OrganizYou\Projeto-Faculdade-Gerencia-de-Projetos\Service\Service.API\obj\Debug\netcoreapp2.2\Service.API.RazorTargetAssemblyInfo.cache
+D:\dev\git\OrganizYou\Projeto-Faculdade-Gerencia-de-Projetos\Service\Service.API\obj\Debug\netcoreapp2.2\Service.API.dll
+D:\dev\git\OrganizYou\Projeto-Faculdade-Gerencia-de-Projetos\Service\Service.API\obj\Debug\netcoreapp2.2\Service.API.pdb
